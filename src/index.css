@@ -1,0 +1,50 @@
+/* importing tailwind */
+@import "tailwindcss";
+
+/* font style for Buttons text */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+    h1 {
+      @apply text-4xl font-bold text-black;
+    }
+    h2 {
+      @apply text-3xl font-bold text-black;
+    }
+    h3 {
+      @apply text-2xl font-bold text-black;
+    }
+    h4 {
+      @apply text-xl font-bold text-black;
+    }
+    h5 {
+      @apply text-lg font-bold text-black;
+    }
+    h6 {
+      @apply text-base font-bold text-black;
+    }
+  }
+
+
+*{
+    /* padding: 0;
+    margin: 0; */
+    transition: all ease-in-out 0.5s;
+}
+
+.btnFonts{
+    font-family: "Rajdhani", serif !important;
+    font-weight: 600 !important;
+}
+
+
+
+/* Hide scrollbar  */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.searchExercises::-webkit-scrollbar{
+  display: none;
+}
+
+

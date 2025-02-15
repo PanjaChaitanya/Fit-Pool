@@ -1,0 +1,110 @@
+.navSidebar {
+  display: flex;
+  height: 100vh !important;
+  justify-content: space-between; 
+  width: 100%;
+}
+
+/* Home Icon - Keeps Its Position on the Left */
+.icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.iconImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.iconTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Sidebar - Always on Right */
+.sidebar {
+  max-width: 250px;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Sidebar Avatar - Stays Circle */
+.sidebarAvatar {
+  width: 180px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Sidebar Brand */
+.sidebarBrand {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Sidebar Menu */
+.sidebarMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+  
+}
+
+/* Menu Button Styling */
+.sidebarMenu button img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* Bottom Section */
+.bottom {
+  margin-top: auto;
+}
+
+/* Menu Icon - Appears Only on Small Screens */
+.menuIcon {
+  display: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Responsive Behavior */
+@media (max-width: 1020px) {
+  .menuIcon {
+    display: block;
+  }
+
+  .menuIcon:hover{
+    transform: rotate(180deg);
+    transition: transform ease-in-out 0.5s;
+  }
+  .sidebar {
+    transform: translateX(100%);
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
