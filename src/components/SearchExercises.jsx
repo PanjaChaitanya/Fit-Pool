@@ -44,24 +44,31 @@ const SearchExercises = () => {
 
   return (
     <div className="flex">
-      <div className="flex-1 max-h-screen overflow-y-auto p-4 searchExercises">
-        <div className="flex flex-col items-center justify-center w-full">
-          <h2 className="font-bold text-center text-[30px] lg:text-[44px] mb-12">
+      <div className="flex-1 max-h-screen overflow-y-auto p-2 searchExercises">
+        <div className="flex flex-col items-center justify-center w-full p-10">
+          <h2 className="text-center ">
             Workouts to Keep You Fit
           </h2>
-          <h3>Pick - Perform - Progress</h3>
+          <h3 className="text-center mt-5">
+            Pick - Perform - Progress</h3>
 
           {/* Search Bar */}
-          <div className="relative mb-[50px] mt-[50px] flex">
+          <div className="relative mb-[20px] mt-[50px] flex">
             <input
-              className="w-[350px] lg:w-[600px] h-[48px] font-bold border-none rounded-l-[10px] bg-white px-4"
+              className="w-[300px] lg:w-[600px] h-[48px] font-bold border-none rounded-l-[10px] bg-white px-4"
               value={search}
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
               placeholder="Search Exercises for More"
               type="text"
             />
             <button
-              className="h-[50px] w-[50px] lg:w-[150px] bg-red-700 text-white text-sm lg:text-lg rounded-r-[20px]"
+              className="
+                h-[50px] w-[50px]
+                lg:w-[150px] 
+              bg-red-700 
+              text-white text-sm lg:text-lg 
+                rounded-r-[20px]
+              hover:bg-red-500 focus:outline-2 focus:outline-offset-2 focus:outline-red-500 active:bg-red-700"
               onClick={SearchExerciseData}
             >
               Search
@@ -69,7 +76,7 @@ const SearchExercises = () => {
           </div>
 
           {/* Horizontal Scroll for Body Parts */}
-          <div className="relative w-full p-5">
+          <div className="relative w-full p-3">
             <HorizontalScrollbar data={bodyParts} />
           </div>
 
@@ -79,7 +86,7 @@ const SearchExercises = () => {
       </div>
 
       {/* SideNavbar*/}
-      <div className="">
+      <div>
         <NavSideBar />
       </div>
     </div>
