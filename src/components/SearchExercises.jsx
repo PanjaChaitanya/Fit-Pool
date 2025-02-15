@@ -80,7 +80,7 @@ const SearchExercises = () => {
       </div>
 
       {/* SideNavbar*/}
-      <div className="w-[250px]">
+      <div className="">
         <NavSideBar />
       </div>
     </div>
