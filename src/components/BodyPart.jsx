@@ -1,4 +1,4 @@
-import Icon from "../../public/icons/gym.png";
+
 import { useBodyPart } from "../contexts/BodyPartContext"; // Import the custom hook
 
 const BodyPart = ({ item }) => {
