@@ -31,8 +31,8 @@ const ExerciseDetail = () => {
   }, [id, cachedExercises, setCachedExercises]);
 
   if (!exerciseDetail) {
-    return <div className="text-center text-gray-500 flex align-middle justify-center" >
-      <img src="/images/assets/loader.gif" alt="loadergif" width="100px" />
+    return <div className="h-screen text-gray-500 flex align-middle justify-center" >
+      <img src="/images/assets/loader.gif" alt="loadergif" width="100px" height="100px" />
     </div>;
   }
 

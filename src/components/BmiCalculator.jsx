@@ -3,7 +3,6 @@ import style from '../styles/BmiCalc.module.css'
 import PrettoSlider from './PrettoSlider';
 import Button from '@mui/material/Button';
 import NavSideBar from './NavSideBar';
-
 let BmiCalculator = () => {
 
   const [weight,setWeight] = useState(35)

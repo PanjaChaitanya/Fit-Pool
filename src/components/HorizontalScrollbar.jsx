@@ -31,13 +31,12 @@ const HorizontalScrollbar = ({data}) => {
         className="absolute left-0 z-1 p-2 bg-gray-200 rounded-full shadow-md hover:bg-gray-300 transition"
         onClick={scrollLeft}
       >
-                <img src="./icons/left-arrow.png" alt="" />
+      <img src="./icons/left-arrow.png" alt="" />
       </button>
-
 
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto scroll-smooth no-scrollbar whitespace-nowrap w-full "
+        className="flex overflow-x-auto scroll-smooth no-scrollbar whitespace-nowrap w-full p-5"
       >
         {data.map((item) => (
           <div

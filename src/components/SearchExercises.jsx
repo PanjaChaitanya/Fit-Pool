@@ -54,29 +54,32 @@ const SearchExercises = () => {
 
           {/* Search Bar */}
           <div className="relative mb-[20px] mt-[50px] flex">
-            <input
-              className="w-[300px] lg:w-[600px] h-[48px] font-bold border-none rounded-l-[10px] bg-white px-4"
-              value={search}
+            
+          <div className="flex items-center rounded-md pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-gray-600">
+            <input type="text" 
+              className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"  value={search}
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
               placeholder="Search Exercises for More"
-              type="text"
             />
-            <button
+            </div>
+            <img
+
+              src="/icons/search.png"
               className="
                 h-[50px] w-[50px]
-                lg:w-[150px] 
-              bg-red-700 
-              text-white text-sm lg:text-lg 
-                rounded-r-[20px]
-              hover:bg-red-500 focus:outline-2 focus:outline-offset-2 focus:outline-red-500 active:bg-red-700"
+                cursor-pointer
+                rounded-[25px]
+                hover:scale-110
+                active:bg-red-600
+                active:scale-75
+               focus:outline-2 focus:outline-offset-2 focus:outline-red-500"
               onClick={SearchExerciseData}
-            >
-              Search
-            </button>
+            />
+            
           </div>
 
           {/* Horizontal Scroll for Body Parts */}
-          <div className="relative w-full p-3">
+          <div className="relative w-full p-5">
             <HorizontalScrollbar data={bodyParts} />
           </div>
 

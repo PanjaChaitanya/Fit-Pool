@@ -19,7 +19,9 @@ const BodyPart = ({ item }) => {
   
   return (
     <div
-      className={`flex flex-col items-center justify-center w-[150px] h-[150px] cursor-pointer gap-2 rounded-full 
+      className={`flex flex-col items-center justify-center 
+        w-[150px] h-[150px] cursor-pointer gap-2 rounded-full
+        hover:scale-105 
         ${bodyPart === item ? "border-t-4 border-red-500" : ""} bg-white`}
       onClick={() => {
         setBodyPart(item);

@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <div className='flex'>
-        <main>
+        <main className='flex flex-1 max-h-screen overflow-y-auto p-2'>
           <section className='HomeSection1'>
             <aside className='textContainer1'>
               <div className='tagLine'>
@@ -18,9 +18,10 @@ function Home() {
               </p>
             </aside>
             <aside className='imageContainer1'>
-
+              
             </aside>
           </section>
+          
         </main>
         <div>
           <NavSideBar />
