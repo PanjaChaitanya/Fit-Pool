@@ -7,7 +7,7 @@ import { exerciseOptions, fetchData } from "../utilities/fetchData";
 const Exercises = () => {
   const { bodyPart, exercises, setExercises } = useBodyPart();
   const [currentPage, setCurrentPage] = useState(1);
-  const [loadingImages, setLoadingImages] = useState({}); // ✅ Track loading for each image
+  const [loadingImages, setLoadingImages] = useState({});
 
   const exercisesPerPage = 6;
   const indexOfLastExercise = currentPage * exercisesPerPage;
