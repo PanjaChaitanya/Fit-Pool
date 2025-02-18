@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Monomakh&display=swap');
+
+
 .navSidebar {
   display: flex;
   height: 100vh !important;
   justify-content: space-between; 
   width: 100%;
+  border-left: 1px solid rgba(128, 128, 128, 0.582);
 }
 
 /* Home Icon - Keeps Its Position on the Left */
@@ -11,6 +15,7 @@
   border: none;
   cursor: pointer;
   display: flex;
+  align-items: center;
   gap: 1rem;
   position: fixed;
   top: 20px;
@@ -24,8 +29,9 @@
 }
 
 .iconTitle {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
+  font-family: 'Monomakh', sans-serif !important;
 }
 
 /* Sidebar - Always on Right */
@@ -53,6 +59,8 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
+  font-family: "Montserrat", serif;
+
 }
 
 /* Sidebar Menu */

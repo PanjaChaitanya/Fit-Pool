@@ -26,7 +26,7 @@ const NavSideBar = () => {
       {/* Home Icon - Stays on Left Always */}
       <div className={style.icon} onClick={goToHome}>
         <img className={style.iconImage} src="/images/fitpool.png" alt="Fit Pool Logo" />
-        <span className={style.iconTitle}>Fit Pool</span>
+        <div className={style.iconTitle}>FIT POOL</div>
       </div>
 
       {/* Menu Icon for Small Screens */}
@@ -37,7 +37,6 @@ const NavSideBar = () => {
         onClick={toggleSidebar} 
       />
 
-      {/* Sidebar - Stays Right for Large Screens, Moves for Small Screens */}
       <aside className={`${style.sidebar} ${isOpen ? style.open : ""}`}>
         <img className={style.sidebarAvatar} src="/images/fitpool.png" alt="Fit Pool Logo" />
         <div className={style.sidebarBrand}>Fit Pool</div>
