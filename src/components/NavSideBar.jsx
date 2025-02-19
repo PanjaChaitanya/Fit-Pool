@@ -15,7 +15,10 @@ const NavSideBar = () => {
   }
   let goToExercises = () =>{
     navigation('/searchexercises')
-    }
+  }
+  let goToStopWatch = () =>{
+    navigation('/stopwatch')
+  }
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -26,7 +29,6 @@ const NavSideBar = () => {
       {/* Home Icon - Stays on Left Always */}
       <div className={style.icon} onClick={goToHome}>
         <img className={style.iconImage} src="/images/fitpool.png" alt="Fit Pool Logo" />
-        <div className={style.iconTitle}>FIT POOL</div>
       </div>
 
       {/* Menu Icon for Small Screens */}
@@ -39,8 +41,8 @@ const NavSideBar = () => {
 
       <aside className={`${style.sidebar} ${isOpen ? style.open : ""}`}>
         <img className={style.sidebarAvatar} src="/images/fitpool.png" alt="Fit Pool Logo" />
-        <div className={style.sidebarBrand}>Fit Pool</div>
-
+        <div className={style.sidebarBrand}>F<span className="text-red-500">I</span>T P<span className="text-red-500">OO</span>L</div>
+        
         {/* Menu */}
         <nav className={style.sidebarMenu}>
           <Button variant="contained" color="error" className='btnFonts' onClick={goToHome}>
@@ -54,6 +56,10 @@ const NavSideBar = () => {
           <Button variant="contained" color="error" className='btnFonts' onClick={goToExercises}>
             <img src="/icons/bmicalculator-icon.png" alt="Exercises" />
             <span>Exercises</span>
+          </Button>
+          <Button variant="contained" color="error" className='btnFonts' onClick={goToStopWatch}>
+            <img src="/icons/bmicalculator-icon.png" alt="stopwatch" />
+            <span>Stopwatch</span>
           </Button>
         </nav>
 

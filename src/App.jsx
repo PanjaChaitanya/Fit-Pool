@@ -5,7 +5,7 @@ import SearchExercises from "./components/SearchExercises";
 import ExerciseDetail from "./components/ExerciseDetail"
 import { BodyPartProvider } from "./contexts/BodyPartContext";
 import { ExerciseProvider } from "./contexts/ExerciseContext";
-
+import StopWatch from "./components/StopWatch";
 
 const  App = () => {
   return (
@@ -17,6 +17,7 @@ const  App = () => {
           <Route path="/bmicalculator" element={<BmiCalculator />} />
           <Route path="/searchexercises" element={<SearchExercises />} />
           <Route path="/exercise/:id" element={<ExerciseDetail />} />
+          <Route path="/stopwatch" element={<StopWatch />} />
         </Routes>
       </Router>
       </ExerciseProvider>

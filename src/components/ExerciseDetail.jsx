@@ -39,24 +39,27 @@ const ExerciseDetail = () => {
   return (
     <div className="flex"> 
 
-      <div className="flex flex-1 max-h-screen overflow-y-auto p-2">
-        <h1 className="text-3xl font-bold">{exerciseDetail.name}</h1>
+      <div className=" searchExercises flex-1 max-h-screen overflow-y-auto flex-col align-middle justify-center p-10">
+        <h1 className="text-3xl mt-14 font-bold capitalize montserratFont">{exerciseDetail.name}</h1>
+        <div className="flex align-middle justify-center items-center flex-col">
         <img src={exerciseDetail.gifUrl} alt={exerciseDetail.name} className="w-80 h-80 my-4" />
-        <p><strong>Target Muscle:</strong> {exerciseDetail.target}</p>
-        <p><strong>Equipment:</strong> {exerciseDetail.equipment}</p>
-
-        {exerciseDetail.instructions && (
-          <div>
-            <strong>Instructions:</strong>
-            <ul className="list-none">
-              {exerciseDetail.instructions.map((detailList, index) => (
-                <li key={index} className="flex items-center gap-2">
-                  <span><img src="/icons/listicon.png" alt="listicon" width="20px"/></span> {detailList}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <div className="flex gap-3 poppinFont">
+          <p><strong>Target Muscle:</strong> {exerciseDetail.target}</p>
+          <p><strong>Equipment:</strong> {exerciseDetail.equipment}</p>
+          {exerciseDetail.instructions && (
+            <div>
+              <strong>Instructions:</strong>
+              <ul className="list-none">
+                {exerciseDetail.instructions.map((detailList, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <span><img src="/icons/listicon.png" alt="listicon" width="20px"/></span> {detailList}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        </div>
       </div>
 
       {/* Sidebar */}

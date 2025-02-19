@@ -30,7 +30,6 @@
 .iconTitle {
   font-size: 24px;
   font-weight: bold;
-  font-family: 'Monomakh', sans-serif !important;
 }
 
 /* Sidebar - Always on Right */
@@ -61,8 +60,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
-  font-family: "Montserrat", serif;
-
+  font-family: 'Monomakh', sans-serif !important;
 }
 
 /* Sidebar Menu */
@@ -112,6 +110,8 @@
     position: fixed;
     top: 0;
     right: 0;
+    height: 100vh;
+    width: 450px;
   }
 
   .sidebar.open {

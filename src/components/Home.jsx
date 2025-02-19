@@ -41,7 +41,7 @@ function Home() {
                   transition={{ duration: 1, ease: "easeInOut", delay: 2.5 }}
                   className="first-letter:text-red-500 first-letter:text-7xl inline-block"
                 >
-                  Fit{" "}
+                  Fit {" "}
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, x: -500 }}
@@ -49,7 +49,7 @@ function Home() {
                   transition={{ duration: 1, ease: "easeInOut", delay: 2.5 }}
                   className="first-letter:text-red-500 first-letter:text-6xl inline-block"
                 >
-                  Pool
+                  {" "}Pool
                 </motion.span>
               </h1>
             </div>
@@ -59,9 +59,12 @@ function Home() {
               Let&apos;s get every muscle in shape!
             </p>
             <div className="flex justify-center">
-              <button
+              <motion.button
                 onClick={openLoginModal}
                 className="px-6 py-2 text-white bg-gradient-to-r from-red-500 to-red-700 rounded-full shadow-lg animate-pulse flex items-center gap-2 hover:scale-105 active:scale-95 cursor-pointer transition transform group btnFonts"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{duration: 1, ease: "easeIn", delay: 6}}
               >
                 Get Started
                 <span className="transition-transform group-hover:-translate-y-2">
@@ -69,7 +72,7 @@ function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path>
                   </svg>
                 </span>
-              </button>
+              </motion.button>
             </div>
           </aside>
 
