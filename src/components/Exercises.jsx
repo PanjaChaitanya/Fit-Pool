@@ -40,21 +40,27 @@ const Exercises = () => {
   }, [bodyPart]);
 
   return (
-    <Box id="exercises" sx={{ mt: { lg: "110px" } }} mt="50px" p="20px">
-      <Typography variant="h4" component="h2" mb="46px" align="center">
+    <Box id="exercises" sx={{ mt: { lg: "80px" } }} mt="40px" p="20px">
+      <Typography 
+        variant="h4" 
+        component="h2" 
+        mb="46px" 
+        align="center" 
+        className="montserratFont uppercase transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:border-b-2  border-red-400"
+      >
         Showing exercises
       </Typography>
 
       <Stack direction="row" flexWrap="wrap" justifyContent="center" sx={{ gap: { lg: "70px", xs: "40px" } }}>
         {currentExercises.map((exercise) => (
           <Link key={exercise.id} to={`/exercise/${exercise.id}`}>
-            <div className="border-red-600 p-5 max-w-[250px] max-h-[500px] ">
+            <div className="border-red-600 p-5 max-w-[250px] max-h-[500px] shadow-xl transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
               
         
               <img
                 src={loadingImages[exercise.id] ? "/images/assets/loader.gif" : exercise.gifUrl}
                 alt={exercise.name}
-                className="rounded-b-md"
+                className="rounded-b-md transition duration-300 ease-in-out hover:-translate-y-7 "
                 onLoad={() => setLoadingImages((prev) => ({ ...prev, [exercise.id]: false }))}
                 onError={() => setLoadingImages((prev) => ({ ...prev, [exercise.id]: false }))}
               />

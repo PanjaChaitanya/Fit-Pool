@@ -3,6 +3,7 @@ import style from '../styles/BmiCalc.module.css'
 import PrettoSlider from './PrettoSlider';
 import Button from '@mui/material/Button';
 import NavSideBar from './NavSideBar';
+import { motion } from 'framer-motion';
 let BmiCalculator = () => {
 
   const [weight,setWeight] = useState(35)
@@ -31,7 +32,11 @@ let BmiCalculator = () => {
   return (
     <>
         <main className={style.BmiCalculator}>
-            <section className={style.calculator}>
+            <motion.section className={style.calculator}
+             initial={{ opacity: 0, y:500}}
+             animate={{ opacity: 1, y:0}}
+             transition={{ duration: 0.5, ease:"easeInOut", delay: 0}}  
+            >
                 <div className={style.bmiTitle}>
                   BMI CALCULATOR
                 </div>
@@ -97,9 +102,12 @@ let BmiCalculator = () => {
                 <Button variant="contained" color='error' onClick={CalculateBMI} className='btnFonts'>Calculate BMI</Button>
                 <h1>{bmi}</h1>
                 <h3>{message}</h3>
-            </section>
+            </motion.section>
             {/* Section for bmi information */}
-            <section className={style.bmi_info}>
+            <motion.section className={style.bmi_info}
+            initial={{ opacity: 0, x:500}}
+            animate={{ opacity: 1, x:0}}
+            transition={{ duration: 1, ease:"easeInOut", delay: 0.1}}  >
                 <h2> Reference Scale</h2>
                 <img src="/images/bmireference.png" alt="bmi-image" width="500px"/>
                 <div className={style.BmiIntro}>
@@ -191,7 +199,7 @@ let BmiCalculator = () => {
                 </div>
 
 
-            </section>
+            </motion.section>
             <section>
               <NavSideBar/>
             </section>

@@ -21,7 +21,7 @@ const BodyPart = ({ item }) => {
     <div
       className={`flex flex-col items-center justify-center 
         w-[150px] h-[150px] cursor-pointer gap-2 rounded-full
-        hover:scale-105 
+        poppinFont drop-shadow-md transition duration-300 ease-in-out hover:drop-shadow-xl hover:scale-110
         ${bodyPart === item ? "border-t-4 border-red-500" : ""} bg-white`}
       onClick={() => {
         setBodyPart(item);
@@ -33,8 +33,9 @@ const BodyPart = ({ item }) => {
         alt={item}
         width="75px"
         height="75px"
+        className="transition duration-300 ease-in-out hover:-translate-y-3 hover:scale-105 hover:drop-shadow-sm"
       />
-      <p className="text-md font-bold text-gray-900 capitalize">{item}</p>
+      <p className="text-md font-bold text-gray-900 uppercase">{item}</p>
     </div>
   );
 };
