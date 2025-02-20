@@ -2,26 +2,40 @@ import { useState } from "react";
 import style from '../styles/NavSideBar.module.css';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthenticationContext"; // Import useAuth
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/Firebase"; // Import Firebase auth instance
+import LoginModal from "./LoginModal"; // Import the login modal component
 
 const NavSideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigation = useNavigate() 
+  const [showLoginModal, setShowLoginModal] = useState(false); // Control modal visibility
+  const navigate = useNavigate();
+  const { userLoggedIn } = useAuth(); // Check if user is logged in
 
-  let goToHome = () =>{
-    navigation('/')
-  }
-  let goToBMICalculator = () =>{
-    navigation('/bmicalculator')
-  }
-  let goToExercises = () =>{
-    navigation('/searchexercises')
-  }
-  let goToStopWatch = () =>{
-    navigation('/stopwatch')
-  }
+  const goToHome = () => navigate('/');
+  const goToBMICalculator = () => navigate('/bmicalculator');
+  const goToStopWatch = () => navigate('/stopwatch');
+
+  const goToExercises = () => {
+    if (userLoggedIn) {
+      navigate('/searchexercises');
+    } else {
+      setShowLoginModal(true); // Open login modal if user is not logged in
+    }
+  };
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate("/"); // Redirect to home after logout
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   return (
@@ -64,13 +78,18 @@ const NavSideBar = () => {
         </nav>
 
         {/* Bottom Menu */}
-        <nav className={`${style.sidebarMenu} ${style.bottom}`}>
-          <Button variant="contained" color="error" className='btnFonts'>
-            <img src="/icons/icon-lock.svg" alt="Sign Out" />
-            <span>Sign Out</span>
-          </Button>
-        </nav>
+        {userLoggedIn && ( // Show Sign Out button only if logged in
+          <nav className={`${style.sidebarMenu} ${style.bottom}`}>
+            <Button variant="contained" color="error" className='btnFonts' onClick={handleSignOut}>
+              <img src="/icons/icon-lock.svg" alt="Sign Out" />
+              <span>Sign Out</span>
+            </Button>
+          </nav>
+        )}
       </aside>
+
+      {/* Login Modal - This should open when showLoginModal is true */}
+      {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
     </div>
   );
 };
