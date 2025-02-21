@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchData, exerciseOptions } from "../utilities/fetchData";
 import { ExerciseContext } from "../contexts/ExerciseContext";
 import NavSideBar from "./NavSideBar"; // Import Sidebar
-
+import StopWatch from "./StopWatch";
 const ExerciseDetail = () => {
   const { id } = useParams(); 
   const { cachedExercises, setCachedExercises } = useContext(ExerciseContext);
@@ -60,6 +60,7 @@ const ExerciseDetail = () => {
           )}
         </div>
         </div>
+        <StopWatch/>
       </div>
 
       {/* Sidebar */}

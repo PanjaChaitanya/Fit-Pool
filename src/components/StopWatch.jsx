@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react"
-import NavSideBar from "./NavSideBar";
 import Button from '@mui/material/Button';
 
 const StopWatch = () => {
@@ -51,9 +50,7 @@ const StopWatch = () => {
           <Button className="btnFonts" variant="contained" color="secondary" onClick={Reset}>Reset</Button>
         </div>
     </div>
-    <div>
-      <NavSideBar/>
-    </div>
+
     </div>
   )
 }

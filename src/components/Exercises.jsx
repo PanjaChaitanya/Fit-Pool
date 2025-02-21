@@ -69,8 +69,8 @@ const Exercises = () => {
                 <h5 className="mt-4 font-bold text-gray-700 capitalize hover:underline">
                   Name: {exercise.name}
                 </h5>
-                <div className="btnFonts">Body Part: {exercise.bodyPart}</div>
-                <div className="btnFonts">Targets On: {exercise.target}</div>
+                <div className="btnFonts text-center \">Body Part: {exercise.bodyPart}</div>
+                <div className="btnFonts text-center">Targets On: {exercise.target}</div>
               </div>
             </div>
           </Link>

@@ -1,57 +1,20 @@
 import { useState } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
-import { doSignInWithEmailAndPassword, doSignInWithGoogle } from "../Firebase/auth";
-import { useAuth } from "../contexts/AuthenticationContext";
 
 function LoginModal({ isOpen, onClose }) {
   const [isLogin, setIsLogin] = useState(true); // Toggle between login and sign-up
-  const { userLoggedIn } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isSignIn, setIsSignIn] = useState(false);
+  
 
-  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
   const handleToggleForm = () => {
     setIsLogin(!isLogin);
   };
+ 
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (!isSignIn) {
-      setIsSignIn(true);
-      try {
-        await doSignInWithEmailAndPassword(email, password);
-        onClose(); // Close modal after successful login
-        navigate('/searchexercises'); // Redirect to search page
-      } catch (err) {
-        setError(err.message);
-        setIsSignIn(false);
-      }
-    }
-  };
-
-  const onGoogleSignIn = async (e) => {
-    e.preventDefault();
-    if (!isSignIn) {
-      setIsSignIn(true);
-      try {
-        await doSignInWithGoogle();
-        onClose();
-        navigate('/searchexercises');
-      } catch (err) {
-        setError(err.message);
-        setIsSignIn(false);
-      }
-    }
-  };
-
+  
   return (
     <>
-      {userLoggedIn && <Navigate to="/searchexercises" replace />}
       <div className="fixed inset-0 z-10 bg-gray-500 bg-opacity-75 flex items-center justify-center">
         <div className="relative bg-white rounded-lg w-full max-w-lg p-6 shadow-lg">
           <div className="absolute top-4 right-4">
@@ -72,9 +35,8 @@ function LoginModal({ isOpen, onClose }) {
             {isLogin ? 'Login' : 'Sign Up'}
           </h2>
 
-          {error && <p className="text-center text-red-500">{error}</p>}
 
-          <form onSubmit={onSubmit}>
+          <form>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email Address
@@ -83,8 +45,6 @@ function LoginModal({ isOpen, onClose }) {
                 type="email"
                 id="email"
                 name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="you@example.com"
                 className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -99,8 +59,6 @@ function LoginModal({ isOpen, onClose }) {
                 type="password"
                 id="password"
                 name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="******"
                 className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -127,17 +85,16 @@ function LoginModal({ isOpen, onClose }) {
               <button
                 type="submit"
                 className="w-full bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700"
-                disabled={isSignIn}
+                
               >
-                {isSignIn ? 'Processing...' : isLogin ? 'Login' : 'Sign Up'}
+                {isLogin ? 'Login' : 'Sign Up'}
               </button>
               <button
                 type="button"
                 className="w-full bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400"
-                onClick={onGoogleSignIn}
-                disabled={isSignIn}
+               
               >
-                {isSignIn ? 'Processing...' : isLogin ? 'Login with Google' : 'Sign Up with Google'}
+                {isLogin ? 'Login with Google' : 'Sign Up with Google'}
               </button>
             </div>
           </form>
