@@ -53,8 +53,12 @@
   height: auto;
   border-radius: 50%;
   margin-bottom: 10px;
+  transition: all ease-in-out 0.5s;
 }
-
+.sidebarAvatar:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 10px black;
+}
 /* Sidebar Brand */
 .sidebarBrand {
   font-size: 18px;
@@ -68,8 +72,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* height: 100vh; */
-  
+  /* height: 100vh; */ 
 }
 
 /* Menu Button Styling */
@@ -92,7 +95,7 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 100;
 }
 
 /* Responsive Behavior */

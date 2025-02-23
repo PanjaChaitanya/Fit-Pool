@@ -1,58 +1,80 @@
-import { useEffect, useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react";
 import Button from '@mui/material/Button';
 
 const StopWatch = () => {
-
+  const [inputTime, setInputTime] = useState(""); 
+  const [remainingTime, setRemainingTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(0);
   const intervalIdRef = useRef(null);
-  const startTimeRef = useRef(0);
+  
+  // Ding sound effect
+  const dingSound = new Audio("https://www.fesliyanstudios.com/play-mp3/4386");
+
+  // Format time as MM:SS
+  const formatTime = () => {
+    const minutes = String(Math.floor(remainingTime / 60000)).padStart(2, "0");
+    const seconds = String(Math.floor((remainingTime / 1000) % 60)).padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  };
 
   useEffect(() => {
-    if(isRunning){
-     intervalIdRef.current= setInterval(()=>{
-        setElapsedTime(Date.now()- startTimeRef.current);
-      },10)
-    }
-    return () => {
+    if (isRunning && remainingTime > 0) {
+      intervalIdRef.current = setInterval(() => {
+        setRemainingTime((prev) => Math.max(0, prev - 1000)); // Decrease by 1 sec
+      }, 1000);
+    } else {
       clearInterval(intervalIdRef.current);
-      }
-  }, [isRunning])
 
-  const Start = () => {
-    setIsRunning(true);
-    startTimeRef.current = Date.now() - elapsedTime;
-  }
-  const Stop = () => {
-    setIsRunning(false);
-  }
-  const Reset = () =>{
-    setElapsedTime(0);
-    setIsRunning(false);
-  }
-  const FormatTime = () =>{
-    const minutes = Math.floor(elapsedTime/60000);
-    const seconds = Math.floor((elapsedTime/1000)%60);
-    const milliseconds = Math.floor((elapsedTime/10)%60);
-    return `${minutes}:${seconds}:${milliseconds}`
+      // Play sound when timer hits zero
+      if (remainingTime === 0 && isRunning) {
+        dingSound.play();
+        setIsRunning(false);
+      }
     }
+
+    return () => clearInterval(intervalIdRef.current);
+  }, [isRunning, remainingTime]);
+
+  // Set countdown time from input
+  const handleSetTime = () => {
+    let minutes = parseInt(inputTime);
+    if (!isNaN(minutes) && minutes > 0 && minutes <= 60) {
+      setRemainingTime(minutes * 60000); // Convert minutes to milliseconds
+      setIsRunning(false); // Ensure it doesn't start automatically
+    }
+  };
 
   return (
-    <div className="flex">
-    <div className=" flex flex-1 flex-col align-middle items-center justify-center gap-5">
-        <h1>Stop Watch</h1>
-        <div className="digitalFont w-50 h-50 rounded-full flex align-middle items-center justify-center drop-shadow-md border-2 border-red-500 font-bold text-2xl text-red-600">
-          {FormatTime()}
-        </div>
-        <div className="flex gap-3">
-          <Button className="btnFonts" variant="contained" color="success" onClick={Start}>Start</Button>
-          <Button className="btnFonts" variant="contained" color="error" onClick={Stop}>Stop</Button>
-          <Button className="btnFonts" variant="contained" color="secondary" onClick={Reset}>Reset</Button>
-        </div>
-    </div>
+    <div className="flex flex-col items-center gap-4">
+      <h1 className="montserratFont">STOP WATCH</h1>
 
-    </div>
-  )
-}
+      {/* Input for Time */}
+      <div className="flex gap-2">
+        <input
+          type="number"
+          className="border p-2 text-lg min-w-3xs text-center"
+          placeholder="Set exercise time (mins)"
+          min={1}
+          max={60}
+          value={inputTime}
+          onChange={(e) => setInputTime(e.target.value)}
+        />
+        <Button variant="contained" color="primary" onClick={handleSetTime}>Set</Button>
+      </div>
 
-export default StopWatch
+      {/* Display Timer */}
+      <div className="digitalFont w-40 h-40 flex items-center justify-center shadow-md border-2 border-red-500 font-bold text-2xl text-red-600 bg-white rounded-full">
+        {formatTime()}
+      </div>
+
+      {/* Control Buttons */}
+      <div className="flex gap-3">
+        <Button variant="contained" color="success" onClick={() => setIsRunning(true)} disabled={remainingTime === 0}>Start</Button>
+        <Button variant="contained" color="error" onClick={() => setIsRunning(false)}>Stop</Button>
+        <Button variant="contained" color="secondary" onClick={() => { setRemainingTime(0); setIsRunning(false); }}>Reset</Button>
+      </div>
+    </div>
+  );
+};
+
+export default StopWatch;

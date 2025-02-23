@@ -100,8 +100,8 @@ let BmiCalculator = () => {
                   />
                 </div>
                 <Button variant="contained" color='error' onClick={CalculateBMI} className='btnFonts'>Calculate BMI</Button>
-                <h1>{bmi}</h1>
-                <h3>{message}</h3>
+                <h1 className="poppinFont">{bmi}</h1>
+                <h4 className='poppinFont'>{message}</h4>
             </motion.section>
             {/* Section for bmi information */}
             <motion.section className={style.bmi_info}

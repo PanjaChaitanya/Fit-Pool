@@ -14,6 +14,9 @@ const NavSideBar = () => {
   const goToExercises = () => {
       navigate('/searchexercises');
   };
+  const goToAbout = () => {
+    navigate('/about');
+    };
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -60,9 +63,9 @@ const NavSideBar = () => {
         {/* Bottom Menu */}
     
           <nav className={`${style.sidebarMenu} ${style.bottom}`}>
-            <Button variant="contained" color="error" className='btnFonts'>
-              <img src="/icons/icon-lock.svg" alt="Sign Out" />
-              <span>Sign Out</span>
+            <Button variant="contained" color="error" className='btnFonts' onClick={goToAbout}>
+              <img src="/icons/icon-lock.svg" alt="about" />
+              <span>About</span>
             </Button>
           </nav>
         

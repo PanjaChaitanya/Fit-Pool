@@ -7,7 +7,6 @@ import { exerciseOptions, fetchData } from "../utilities/fetchData";
 const Exercises = () => {
   const { bodyPart, exercises, setExercises } = useBodyPart();
   const [currentPage, setCurrentPage] = useState(1);
-  const [loadingImages, setLoadingImages] = useState({});
 
   const exercisesPerPage = 6;
   const indexOfLastExercise = currentPage * exercisesPerPage;
@@ -53,27 +52,26 @@ const Exercises = () => {
 
       <Stack direction="row" flexWrap="wrap" justifyContent="center" sx={{ gap: { lg: "70px", xs: "40px" } }}>
         {currentExercises.map((exercise) => (
-          <Link key={exercise.id} to={`/exercise/${exercise.id}`}>
-            <div className="border-red-600 p-5 max-w-[250px] max-h-[500px] shadow-xl transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
-              
-        
-              <img
-                src={loadingImages[exercise.id] ? "/images/assets/loader.gif" : exercise.gifUrl}
-                alt={exercise.name}
-                className="rounded-b-md transition duration-300 ease-in-out hover:-translate-y-7 "
-                onLoad={() => setLoadingImages((prev) => ({ ...prev, [exercise.id]: false }))}
-                onError={() => setLoadingImages((prev) => ({ ...prev, [exercise.id]: false }))}
-              />
-
-              <div className="flex flex-wrap mt-2 align-middle justify-center gap-2">
-                <h5 className="mt-4 font-bold text-gray-700 capitalize hover:underline">
-                  Name: {exercise.name}
-                </h5>
-                <div className="btnFonts text-center \">Body Part: {exercise.bodyPart}</div>
-                <div className="btnFonts text-center">Targets On: {exercise.target}</div>
-              </div>
-            </div>
-          </Link>
+         <Link key={exercise.id} to={`/exercise/${exercise.id}`}>
+         <div className="border-red-600 p-5 w-[250px] h-auto shadow-xl transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+           
+           {/* Ensure GIF URL is valid */}
+           <img
+             src={exercise?.gifUrl ? exercise.gifUrl : "/images/assets/small_Loader.gif"}
+             alt={exercise.name}
+             className="rounded-b-md w-full h-auto object-cover transition duration-300 ease-in-out hover:-translate-y-7"
+           />
+       
+           <div className="flex flex-wrap mt-2 align-middle justify-center gap-2">
+             <h5 className="mt-4 font-bold text-gray-700 capitalize hover:underline">
+               Name: {exercise.name}
+             </h5>
+             <div className="btnFonts text-center">Body Part: {exercise.bodyPart}</div>
+             <div className="btnFonts text-center">Targets On: {exercise.target}</div>
+           </div>
+         </div>
+       </Link>
+       
         ))}
       </Stack>
 
