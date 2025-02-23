@@ -32,7 +32,7 @@ function LoginModal({ isOpen, onClose }) {
           </div>
 
           <h2 className="text-center text-2xl font-semibold text-red-600 mb-4">
-            {isLogin ? 'Login' : 'Sign Up'}
+            {isLogin ? 'Not Yet integrated 😊' : 'Sign Up'}
           </h2>
 
 
