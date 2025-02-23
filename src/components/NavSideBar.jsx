@@ -57,7 +57,7 @@ const NavSideBar = () => {
             <img src="/icons/bmicalculator-icon.png" alt="Exercises" />
             <span>Exercises</span>
           </Button>
-          
+          <Button> See About Below</Button>
         </nav>
 
         {/* Bottom Menu */}

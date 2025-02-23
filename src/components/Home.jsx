@@ -34,13 +34,23 @@ function Home() {
                   Dive into the
                 </motion.h2>
                 <h1>
-                  <motion.span initial={{ opacity: 0, x: 500 }} animate={isSection1InView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 1, ease: "easeInOut", delay: 1 }}>
-                    Fit {" "}
-                  </motion.span>
-                  <motion.span initial={{ opacity: 0, x: -500 }} animate={isSection1InView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 1, ease: "easeInOut", delay: 1 }}>
-                    {" "}Pool
-                  </motion.span>
-                </h1>
+                <motion.span
+                  initial={{ opacity: 0, x: 500 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: "easeInOut", delay: 2.5 }}
+                  className="first-letter:text-red-500 first-letter:text-7xl inline-block"
+                >
+                  Fit {" "}
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: -500 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: "easeInOut", delay: 2.5 }}
+                  className="first-letter:text-red-500 first-letter:text-6xl inline-block"
+                >
+                  {" "} Pool
+                </motion.span>
+              </h1>
               </div>
               <p className="poppinFont">
                 Transform your fitness journey with Fit Pool! Explore a wide range of exercises and expert workout guides. Whether you aim
