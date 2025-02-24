@@ -1,6 +1,24 @@
 import { motion } from "framer-motion";
 import NavSideBar from "../components/NavSideBar";
 
+const features = [
+    "Exercise Search", 
+    "BMI Calculator", 
+    "Workout Timer", 
+    "ExerciseDB API", 
+    "Firebase Authentication", 
+    "Material UI",
+    "Tailwind CSS",
+    "Framer Motion"
+]
+const featureImages = {
+    "Exercise Search": "/icons/searchicon.png",
+    "BMI Calculator": "/icons/bmi.png",
+    "Workout Timer": "/icons/timer.png",
+    "ExerciseDB API": "/icons/api.png",
+    
+}
+
 const About = () => {
   return (
     <div className="flex">
@@ -51,7 +69,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             >
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-800 text-md">
-                {["Exercise Search", "BMI Calculator", "Workout Timers", "ExerciseDB API", "Firebase Authentication", "Material UI & Tailwind"].map((feature, index) => (
+                {features.map((feature, index) => (
                 <motion.li
                     key={index}
                     className="p-3 bg-white shadow-lg rounded-lg flex items-center gap-2 hover:scale-105 transition-all duration-300"
