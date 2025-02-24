@@ -13,16 +13,19 @@ const features = [
 ]
 const featureImages = {
     "Exercise Search": "/icons/searchicon.png",
-    "BMI Calculator": "/icons/bmi.png",
+    "BMI Calculator": "/icons/bmical.png",
     "Workout Timer": "/icons/timer.png",
     "ExerciseDB API": "/icons/api.png",
-    
+    "Firebase Authentication": "/icons/firebase.png",
+    "Material UI": "/icons/materialui.png",
+    "Tailwind CSS": "/icons/tailwind.png",
+    "Framer Motion": "/icons/framermotion.png"
 }
 
 const About = () => {
   return (
     <div className="flex">
-        <div className="flex flex-1 flex-col lg:flex-row h-auto min-h-screen bg-gray-100 p-6">
+        <div className="flex flex-1 flex-col lg:flex-row h-auto max-h-screen bg-gray-100 p-6 overflow-y-auto no-scrollbar">
         {/* Left Section with Image */}
         <motion.div
             className="lg:w-1/3 flex justify-center items-center p-6"
@@ -77,7 +80,7 @@ const About = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
                 >
-                    <img src="/icons/right-arrow.png" width="20px" alt="" /> {feature}
+                    <img src={featureImages[feature]} width="20px" alt="" /> {feature}
                 </motion.li>
                 ))}
             </ul>
