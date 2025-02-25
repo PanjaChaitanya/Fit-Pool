@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from "framer-motion";
 import NavSideBar from '../components/NavSideBar';
 import LoginModal from '../components/LoginModal';
-
+import "../App.css"
 function Home() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
@@ -33,7 +33,7 @@ function Home() {
                 <motion.h2 initial={{ opacity: 0 }} animate={isSection1InView ? { opacity: 1 } : {}} transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}>
                   Dive into the
                 </motion.h2>
-                <h1>
+                <h1 id='fitPool'>
                 <motion.span
                   initial={{ opacity: 0, x: 500 }}
                   animate={{ opacity: 1, x: 0 }}
