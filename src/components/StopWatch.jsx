@@ -8,21 +8,20 @@ const StopWatch = () => {
   const intervalIdRef = useRef(null);
   
   // Ding sound effect
-  const dingSound = new Audio("https://www.fesliyanstudios.com/play-mp3/4386");
+  const dingSound = new Audio("/beep-warning.mp3");
 
-  // Format time as MM:SS:MS
+  // Format time as MM:SS
   const formatTime = () => {
     const minutes = String(Math.floor(remainingTime / 60000)).padStart(2, "0");
     const seconds = String(Math.floor((remainingTime / 1000) % 60)).padStart(2, "0");
-    const milliseconds = String((remainingTime % 1000)/10).padStart(2, "0");
-    return `${minutes}:${seconds}:${milliseconds}`;
+    return `${minutes}:${seconds}`;
   };
 
   useEffect(() => {
     if (isRunning && remainingTime > 0) {
       intervalIdRef.current = setInterval(() => {
-        setRemainingTime((prev) => Math.max(0, prev - 10)); // Decrease by 10ms
-      }, 10);
+        setRemainingTime((prev) => Math.max(0, prev - 1000)); // Decrease by 1 sec
+      }, 1000);
     } else {
       clearInterval(intervalIdRef.current);
 
@@ -53,7 +52,7 @@ const StopWatch = () => {
       <div className="flex gap-2">
         <input
           type="number"
-          className="border p-2 text-lg min-w-3xs text-center"
+          className="border p-2 min-w-3xs text-center bg-gray-50  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="Set exercise time (mins)"
           min={1}
           max={60}
@@ -64,7 +63,7 @@ const StopWatch = () => {
       </div>
 
       {/* Display Timer */}
-      <div className="digitalFont w-44 h-44 flex items-center justify-center shadow-md border-2 border-red-500 font-bold text-2xl text-red-600 bg-white rounded-full">
+      <div className="digitalFont w-40 h-40 flex items-center justify-center shadow-md border-2 border-gray-700 font-bold text-2xl text-white bg-gray-900 rounded-full">
         {formatTime()}
       </div>
 
