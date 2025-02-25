@@ -10,18 +10,19 @@ const StopWatch = () => {
   // Ding sound effect
   const dingSound = new Audio("https://www.fesliyanstudios.com/play-mp3/4386");
 
-  // Format time as MM:SS
+  // Format time as MM:SS:MS
   const formatTime = () => {
     const minutes = String(Math.floor(remainingTime / 60000)).padStart(2, "0");
     const seconds = String(Math.floor((remainingTime / 1000) % 60)).padStart(2, "0");
-    return `${minutes}:${seconds}`;
+    const milliseconds = String((remainingTime % 1000)/10).padStart(2, "0");
+    return `${minutes}:${seconds}:${milliseconds}`;
   };
 
   useEffect(() => {
     if (isRunning && remainingTime > 0) {
       intervalIdRef.current = setInterval(() => {
-        setRemainingTime((prev) => Math.max(0, prev - 1000)); // Decrease by 1 sec
-      }, 1000);
+        setRemainingTime((prev) => Math.max(0, prev - 10)); // Decrease by 10ms
+      }, 10);
     } else {
       clearInterval(intervalIdRef.current);
 
@@ -63,7 +64,7 @@ const StopWatch = () => {
       </div>
 
       {/* Display Timer */}
-      <div className="digitalFont w-40 h-40 flex items-center justify-center shadow-md border-2 border-red-500 font-bold text-2xl text-red-600 bg-white rounded-full">
+      <div className="digitalFont w-44 h-44 flex items-center justify-center shadow-md border-2 border-red-500 font-bold text-2xl text-red-600 bg-white rounded-full">
         {formatTime()}
       </div>
 
