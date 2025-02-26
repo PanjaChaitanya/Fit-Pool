@@ -73,9 +73,7 @@ const ExerciseDetail = () => {
               <ul className="list-none">
                 {exerciseDetail.instructions.map((detailList, index) => (
                   <li key={index} className="flex items-center gap-2">
-                    <span>
-                      <img src="/icons/listicon.png" alt="listicon" width="20px"/>
-                    </span> 
+                    <img src="/icons/listicon.png" alt="listicon" width="20px"/>
                     {detailList}
                   </li>
                 ))}
