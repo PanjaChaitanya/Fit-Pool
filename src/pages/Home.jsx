@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <>
       <div className="flex">
-        <main className="flex flex-1 flex-col max-h-screen overflow-y-auto p-2 no-scrollbar view">
+        <main className="flex flex-1 flex-col max-h-screen overflow-y-auto p-2 no-scrollbar">
           
           {/* First Section */}
           <section ref={section1Ref} className="HomeSection1 flex flex-wrap mt-10 animateClass">

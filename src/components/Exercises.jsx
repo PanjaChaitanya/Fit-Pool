@@ -45,7 +45,7 @@ const Exercises = () => {
         component="h2" 
         mb="46px" 
         align="center" 
-        className="montserratFont uppercase transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:border-b-2  border-red-400"
+        className="montserratFont uppercase transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:border-b-2  border-red-400 animateClass"
       >
         Showing exercises
       </Typography>
@@ -53,7 +53,7 @@ const Exercises = () => {
       <Stack direction="row" flexWrap="wrap" justifyContent="center" sx={{ gap: { lg: "70px", xs: "40px" } }}>
         {currentExercises.map((exercise) => (
          <Link key={exercise.id} to={`/exercise/${exercise.id}`}>
-         <div className="border-red-600 p-5 w-[250px] h-auto shadow-xl transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
+         <div className="border-red-600 p-5 w-[250px] h-auto shadow-xl transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 animateClass">
            
            {/* Ensure GIF URL is valid */}
            <img

@@ -75,7 +75,7 @@ const About = () => {
                 {features.map((feature, index) => (
                 <motion.li
                     key={index}
-                    className="p-3 bg-white shadow-lg rounded-lg flex items-center gap-2 hover:scale-105 transition-all duration-300"
+                    className="p-3 bg-white shadow-lg rounded-lg flex items-center gap-2 hover:scale-105 transition-all duration-300 animateClass"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -92,7 +92,7 @@ const About = () => {
             animate={{ opacity: 1, y:0}}
             transition={{ duration: 0.5, ease:"easeInOut", delay: 1}}  
             >
-            <div className="bg-white p-3 rounded-lg hover:scale-105 transition-all duration-300">
+            <div className="bg-white p-3 rounded-lg hover:scale-105 transition-all duration-300 animateClass">
                 <h3 className="text-xl font-semibold text-gray-900">Typography</h3>
                 <p className="text-gray-700">Fonts are sourced from Google Fonts.</p>
                 <ul className="mt-2 text-gray-800">
@@ -101,7 +101,7 @@ const About = () => {
                 <li className="btnFonts">Rajadhani - Buttons</li>
                 </ul>
             </div>
-            <div className="bg-white p-3 rounded-lg hover:scale-105 transition-all duration-300">
+            <div className="bg-white p-3 rounded-lg hover:scale-105 transition-all duration-300 animateClass">
                 <h3 className="text-xl font-semibold text-gray-900">Future Improvements</h3>
                 <ul className="mt-2 text-gray-800">
                     <li>👤 User Profile</li>
