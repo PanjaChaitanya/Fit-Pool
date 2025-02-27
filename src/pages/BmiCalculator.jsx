@@ -4,7 +4,9 @@ import PrettoSlider from '../components/PrettoSlider';
 import Button from '@mui/material/Button';
 import NavSideBar from '../components/NavSideBar';
 import { motion } from 'framer-motion';
-let BmiCalculator = () => {
+
+
+const BmiCalculator = () => {
 
   const [weight,setWeight] = useState(35)
   const [feet,setFeet] = useState(5)

@@ -43,7 +43,6 @@ const SearchExercises = () => {
       setExercises(SearchedExercises);
     }
   };
-
   return (
     <div className="flex">
       <div className="flex-1 max-h-screen overflow-y-auto p-2 searchExercises">

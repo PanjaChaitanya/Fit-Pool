@@ -3,7 +3,10 @@ import { motion, useInView } from "framer-motion";
 import NavSideBar from '../components/NavSideBar';
 import LoginModal from '../components/LoginModal';
 import "../App.css"
-function Home() {
+
+
+const Home = () => {
+
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const openLoginModal = () => {
@@ -92,7 +95,6 @@ function Home() {
               </p>
             </aside>
           </section>
-
         </main>
         <div>
           <NavSideBar />

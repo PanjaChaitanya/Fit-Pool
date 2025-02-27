@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-function LoginModal({ isOpen, onClose }) {
+const LoginModal = ({ isOpen, onClose }) => {
+
+
   const [isLogin, setIsLogin] = useState(true); // Toggle between login and sign-up
   
-
-
   if (!isOpen) return null;
 
   const handleToggleForm = () => {
@@ -12,7 +12,6 @@ function LoginModal({ isOpen, onClose }) {
   };
  
 
-  
   return (
     <>
       <div className="fixed inset-0 z-10 bg-gray-500 bg-opacity-75 flex items-center justify-center">
