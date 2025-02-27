@@ -24,10 +24,10 @@ const Home = () => {
   return (
     <>
       <div className="flex">
-        <main className="flex flex-1 flex-col max-h-screen overflow-y-auto p-2 no-scrollbar">
+        <main className="flex flex-1 flex-col max-h-screen overflow-y-auto p-2 no-scrollbar view">
           
           {/* First Section */}
-          <section ref={section1Ref} className="HomeSection1 flex flex-wrap mt-10">
+          <section ref={section1Ref} className="HomeSection1 flex flex-wrap mt-10 animateClass">
             <aside className="textContainer1 flex-1 min-w-[340px] p-10 flex flex-col gap-5 align-middle justify-center">
               <div className="tagLine montserratFont">
                 <motion.h3 initial={{ opacity: 0 }} animate={isSection1InView ? { opacity: 1 } : {}} transition={{ duration: 1.5, ease: "easeInOut" }}>
@@ -78,7 +78,7 @@ const Home = () => {
           </section>
 
           {/* Second Section - BMI & Stopwatch */}
-          <section ref={section2Ref} className="HomeSection2 flex flex-wrap mt-20">
+          <section ref={section2Ref} className="HomeSection2 flex flex-wrap mt-10 mb-32 animateClass">
             <aside className="imageContainer2 flex-[0.8] min-w-[260px] flex justify-center align-middle items-center relative">
               <motion.div className="absolute w-[350px] h-[250px] bg-blue-500 rounded-[50%] rotate-[-20deg]" initial={{ opacity: 0, x: -500 }} animate={isSection2InView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 1, ease: "easeInOut", delay: 1.5 }}></motion.div>
               <motion.img src="/images/assets/home2.png" alt="bmiStopwatch" className="max-w-[300px] h-auto relative" initial={{ opacity: 0 }} animate={isSection2InView ? { opacity: 1 } : {}} transition={{ duration: 1.5, ease: "easeInOut", delay: 1 }} />

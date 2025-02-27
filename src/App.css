@@ -6,8 +6,27 @@
     overflow: hidden;
     animation: typing 2s steps(50) infinite alternate-reverse;
 }
+
 @keyframes typing{
     from{
         width: 0ch;
+    }
+}
+
+/* page scroll animation */
+.animateClass{
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
+
+@keyframes appear{
+    0% {
+        opacity: 0;
+        scale: 0.5;
+    }
+    100% {
+        opacity: 1;
+        scale: 1;
     }
 }
