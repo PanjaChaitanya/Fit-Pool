@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from "framer-motion";
-import NavSideBar from './NavSideBar';
-import LoginModal from './LoginModal';
+import NavSideBar from '../components/NavSideBar';
+import LoginModal from '../components/LoginModal';
 
 function Home() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

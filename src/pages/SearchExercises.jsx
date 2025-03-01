@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { exerciseOptions, fetchData } from "../utilities/fetchData";
-import HorizontalScrollbar from "./HorizontalScrollbar";
-import Exercises from "./Exercises"; // Import Exercises component
+import HorizontalScrollbar from "../components/HorizontalScrollbar";
+import Exercises from "../components/Exercises"; // Import Exercises component
 import { useBodyPart } from "../contexts/BodyPartContext";
 
-import NavSideBar from "./NavSideBar";
+import NavSideBar from "../components/NavSideBar";
 
 import {motion} from 'framer-motion'
 

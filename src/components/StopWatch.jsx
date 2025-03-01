@@ -46,7 +46,7 @@ const StopWatch = () => {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <h1 className="montserratFont">STOP WATCH</h1>
+      <h1 className="montserratFont"> TIMER</h1>
 
       {/* Input for Time */}
       <div className="flex gap-2">

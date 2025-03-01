@@ -2,8 +2,8 @@ import { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { fetchData, exerciseOptions } from "../utilities/fetchData";
 import { ExerciseContext } from "../contexts/ExerciseContext";
-import NavSideBar from "./NavSideBar";
-import StopWatch from "./StopWatch";
+import NavSideBar from "../components/NavSideBar";
+import StopWatch from "../components/StopWatch";
 import { Button } from "@mui/material";
 
 const ExerciseDetail = () => {

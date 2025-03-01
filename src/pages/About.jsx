@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import NavSideBar from "./NavSideBar";
+import NavSideBar from "../components/NavSideBar";
 
 const About = () => {
   return (

@@ -28,7 +28,7 @@ const HorizontalScrollbar = ({data}) => {
     <div className="relative w-full flex items-center">
       {/* Left Scroll Button */}
       <button
-        className="absolute left-0 z-1 p-2 bg-gray-200 rounded-full shadow-md hover:bg-gray-300 transition"
+        className="absolute z-1 p-2 bg-gray-200 rounded-full shadow-md hover:bg-gray-300 transition"
         onClick={scrollLeft}
       >
       <img src="./icons/left-arrow.png" alt="" />
@@ -50,7 +50,7 @@ const HorizontalScrollbar = ({data}) => {
 
       {/* Right Scroll Button */}
       <button
-        className="absolute right-0 z-10 p-2 bg-gray-200 rounded-full shadow-md hover:bg-gray-300 transition"
+        className="absolute right-0 z-1 p-2 bg-gray-200 rounded-full shadow-md hover:bg-gray-300 transition"
         onClick={scrollRight}
       >
         <img src="./icons/right-arrow.png" alt="" />

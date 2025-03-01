@@ -16,8 +16,10 @@ const NavSideBar = () => {
   };
   const goToAbout = () => {
     navigate('/about');
+  };
+  const goToContact = () => {
+    navigate('/contact');
     };
-
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -65,7 +67,11 @@ const NavSideBar = () => {
           <nav className={`${style.sidebarMenu} ${style.bottom}`}>
             <Button variant="contained" color="error" className='btnFonts' onClick={goToAbout}>
               <img src="/icons/icon-lock.svg" alt="about" />
-              <span>About</span>
+              <span> About </span>
+            </Button>
+            <Button variant="contained" color="error" className='btnFonts' onClick={goToContact}>
+              <img src="/icons/icon-lock.svg" alt="about" />
+              <span> Contact </span>
             </Button>
           </nav>
         

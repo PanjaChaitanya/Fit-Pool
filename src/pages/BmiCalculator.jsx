@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import style from '../styles/BmiCalc.module.css'
-import PrettoSlider from './PrettoSlider';
+import PrettoSlider from '../components/PrettoSlider';
 import Button from '@mui/material/Button';
-import NavSideBar from './NavSideBar';
+import NavSideBar from '../components/NavSideBar';
 import { motion } from 'framer-motion';
 let BmiCalculator = () => {
 

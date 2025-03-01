@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import BmiCalculator from "./components/BmiCalculator";
-import SearchExercises from "./components/SearchExercises";
-import ExerciseDetail from "./components/ExerciseDetail";
-import About from "./components/About";
+import Home from "./pages/Home";
+import BmiCalculator from "./pages/BmiCalculator";
+import SearchExercises from "./pages/SearchExercises";
+import ExerciseDetail from "./pages/ExerciseDetail";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import { BodyPartProvider } from "./contexts/BodyPartContext";
 import { ExerciseProvider } from "./contexts/ExerciseContext";
 
@@ -19,6 +20,7 @@ const App = () => {
               <Route path="/searchexercises" element={<SearchExercises />} />
               <Route path="/exercise/:id" element={<ExerciseDetail />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
             </Routes>
           </Router>
         </ExerciseProvider>
