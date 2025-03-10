@@ -38,7 +38,12 @@
 
 }
 .bmi_info::-webkit-scrollbar{
-    display: none;
+    width: 10px;
+    /* background-color: #dddddd; */
+}
+.bmi_info::-webkit-scrollbar-thumb{
+    background-color: #fa2a2a;
+    border-radius: 10px;
 }
 
 .bmi_info img {
