@@ -53,13 +53,13 @@ const Exercises = () => {
       <Stack direction="row" flexWrap="wrap" justifyContent="center" sx={{ gap: { lg: "70px", xs: "40px" } }}>
         {currentExercises.map((exercise) => (
          <Link key={exercise.id} to={`/exercise/${exercise.id}`}>
-         <div className="border-red-600 p-5 w-[250px] h-auto shadow-xl transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 animateClass">
+         <div className="p-5 w-[250px] h-auto shadow-2xl transition duration-300 rounded-xl ease-in-out hover:-translate-y-1 hover:scale-110 hover:border-2 animateClass">
            
            {/* Ensure GIF URL is valid */}
            <img
              src={exercise?.gifUrl ? exercise.gifUrl : "/images/assets/small_Loader.gif"}
              alt={exercise.name}
-             className="rounded-b-md w-full h-auto object-cover transition duration-300 ease-in-out hover:-translate-y-7"
+             className="rounded-b-md w-full h-auto object-cover transition duration-300 ease-in-out"
            />
        
            <div className="flex flex-wrap mt-2 align-middle justify-center gap-2">
