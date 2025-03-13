@@ -6,11 +6,11 @@ const Contact = () => {
     <div className='flex'>
         {/* contact block */}
         <div className='flex-1 align-middle justify-center max-h-screen'>
-            <div>
+            <div className='text-center'>
                 <h1 className='text-3xl font-bold'>Contact <span className='text-red-500'>Me</span></h1>
                 <p className='text-lg'>Contact us for any questions or concerns.</p>
             </div>
-            <div className='flex'>
+            <div className='flex flex-wrap justify-center gap-x-10 align-middle'>
                 {/* contact form block */}
                 <div className='contact-form'>
                     <form className='flex flex-col'>
