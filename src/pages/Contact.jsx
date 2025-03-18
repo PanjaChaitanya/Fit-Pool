@@ -27,30 +27,30 @@ const Contact = () => {
                     <div className="contact-info-header">
                         Contact Info
                     </div>
-                    <div className="contact-info-content">
-                        <div className="contect-info-content-line">
+                    <div className="contact-info-content flex flex-col gap-5">
+                        <div className="contect-info-content-line flex gap-5">
                             <img src="/icons/icon-name.png" className="icon" alt="name-icon"/>
                             <div className="contact-info-text">
                                 <h6>Name</h6>
                                 <p>Chaitanya Panja</p>
                             </div>
                         </div>
-                        <div className="contect-info-content-line">
+                        <div className="contect-info-content-line flex gap-5">
                             <img src="/icons/icon-location.png" className="icon" alt="location-icon"/>
                             <div className="contact-info-text">
                                 <h6>Location</h6>
                                 <p>Andhra Pradesh State, Bhimavaram</p>
                             </div>
                         </div>
-                        <div className="contect-info-content-line">
+                        <div className="contect-info-content-line flex gap-5">
                             <img src="/icons/icon-phone.png" className="icon" alt="phone-icon"/>
                             <div className="contact-info-icon-text">
                                 <h6>Call</h6>
                                 <p>+91 9059944125</p>
                             </div>
                         </div>
-                        <div className="contect-info-content-line">
-                            <img src="./images/icon-email.png" className="icon" alt="email-icon"/>
+                        <div className="contect-info-content-line flex gap-5">
+                            <img src="/icons/icon-email.png" className="icon" alt="email-icon"/>
                             <div className="contact-info-icon-text">
                                 <h6>Email</h6>
                                 <p>panjachaitanya23@gmail.com</p>
