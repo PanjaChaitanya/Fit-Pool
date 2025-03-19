@@ -1,30 +1,30 @@
 import NavSideBar from '../components/NavSideBar'
-
+import { TextField } from '@mui/material'
 
 const Contact = () => {
   return (
     <div className='flex'>
         {/* contact block */}
-        <div className='flex-1 align-middle justify-center max-h-screen'>
+        <div className='flex-1 flex flex-col gap-10 align-middle justify-center max-h-screen'>
             <div className='text-center'>
                 <h1 className='text-3xl font-bold'>Contact <span className='text-red-500'>Me</span></h1>
                 <p className='text-lg'>Contact us for any questions or concerns.</p>
             </div>
             <div className='flex flex-wrap justify-center gap-x-10 align-middle'>
                 {/* contact form block */}
-                <div className='contact-form'>
-                    <form className='flex flex-col'>
-                        <label className='text-lg'>Name:</label>
-                        <input type='text' className='border border-gray-500 p-2' />
-                        <label className='text-lg'>Email:</label>
-                        <input type='email' className='border border-gray-500 p-2' />
-                        <label className='text-lg'>Message:</label>
-                        <textarea className='border border-gray-500 p-2' />
+                <div className='contact-form flex flex-col gap-5'>
+                    <div className='form-header text-center text-2xl font-bold'>
+                        Message me
+                    </div>
+                    <form className='flex flex-col gap-5'>
+                        <TextField className='w-3xs' label="Name" type='text' placeholder='Enter your name' variant='standard'></TextField>
+                        <TextField className='w-3xs' label="Email" type='email' placeholder='Enter your email' variant='standard'></TextField>
+                        <TextField id="filled-textarea" label="Message" placeholder="Enter your message here" multiline variant="filled"/>
                     </form>
                 </div>
                 {/* contact info block */}
-                <div className="contact-info">
-                    <div className="contact-info-header">
+                <div className="contact-info flex flex-col gap-10">
+                    <div className="contact-info-header text-center text-2xl font-bold">
                         Contact Info
                     </div>
                     <div className="contact-info-content flex flex-col gap-5">
