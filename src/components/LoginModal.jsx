@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { TextField } from '@mui/material';
 const LoginModal = ({ isOpen, onClose }) => {
 
 
@@ -37,10 +37,9 @@ const LoginModal = ({ isOpen, onClose }) => {
 
           <form>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
-              <input
+              <TextField
+                label="Email Address"
+                variant='standard'
                 type="email"
                 id="email"
                 name="email"
@@ -51,30 +50,28 @@ const LoginModal = ({ isOpen, onClose }) => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
+              <TextField
+                label='Password'
                 type="password"
+                variant='standard'
                 id="password"
                 name="password"
                 required
-                placeholder="******"
+                placeholder="Enter password"
                 className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-              />
+              ></TextField>
             </div>
 
             {!isLogin && (
               <div className="mb-4">
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                  Confirm Password
-                </label>
-                <input
+                <TextField
+                  label='Confirm Password'
                   type="password"
+                  variant='standard'
                   id="confirmPassword"
                   name="confirmPassword"
                   required
-                  placeholder="******"
+                  placeholder="Re-Enter password"
                   className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
               </div>
