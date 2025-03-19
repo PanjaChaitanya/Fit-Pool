@@ -1,11 +1,11 @@
 import NavSideBar from '../components/NavSideBar'
-import { TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 
 const Contact = () => {
   return (
     <div className='flex'>
         {/* contact block */}
-        <div className='flex-1 flex flex-col gap-10 align-middle justify-center max-h-screen'>
+        <div className='flex-1 flex flex-col gap-10 align-middle justify-center max-h-screen overflow-y-auto red-scrollbar'>
             <div className='text-center'>
                 <h1 className='text-3xl font-bold'>Contact <span className='text-red-500'>Me</span></h1>
                 <p className='text-lg'>Contact us for any questions or concerns.</p>
@@ -21,6 +21,11 @@ const Contact = () => {
                         <TextField className='w-3xs' label="Email" type='email' placeholder='Enter your email' variant='standard'></TextField>
                         <TextField id="filled-textarea" label="Message" placeholder="Enter your message here" multiline variant="filled"/>
                     </form>
+                    <div>
+                        <Button className='btnFonts' variant='outlined' >
+                            Send Message
+                        </Button>
+                    </div>
                 </div>
                 {/* contact info block */}
                 <div className="contact-info flex flex-col gap-10">
@@ -44,14 +49,14 @@ const Contact = () => {
                         </div>
                         <div className="contect-info-content-line flex gap-5">
                             <img src="/icons/icon-phone.png" className="icon" alt="phone-icon"/>
-                            <div className="contact-info-icon-text">
+                            <div className="contact-info-text">
                                 <h6>Call</h6>
                                 <p>+91 9059944125</p>
                             </div>
                         </div>
                         <div className="contect-info-content-line flex gap-5">
                             <img src="/icons/icon-email.png" className="icon" alt="email-icon"/>
-                            <div className="contact-info-icon-text">
+                            <div className="contact-info-text">
                                 <h6>Email</h6>
                                 <p>panjachaitanya23@gmail.com</p>
                             </div>

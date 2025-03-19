@@ -43,9 +43,10 @@ const SearchExercises = () => {
       setExercises(SearchedExercises);
     }
   };
+
   return (
     <div className="flex">
-      <div className="flex-1 max-h-screen overflow-y-auto p-2 searchExercises">
+      <div className="flex-1 max-h-screen overflow-y-auto p-2 red-scrollbar">
         <div className="flex flex-col items-center justify-center w-full p-10">
           <motion.h2 
           initial={{ opacity: 0, y:-300}}

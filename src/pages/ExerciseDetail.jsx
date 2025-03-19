@@ -46,7 +46,7 @@ const ExerciseDetail = () => {
   return (
     <div className="flex">
       {/* Main Content */}
-      <div className="searchExercises flex-1 max-h-screen overflow-y-auto flex-col align-middle justify-center p-10">
+      <div className="red-scrollbar flex-1 max-h-screen overflow-y-auto flex-col align-middle justify-center p-10">
         <h1 className="text-3xl mt-14 font-bold capitalize montserratFont">
           {exerciseDetail?.name || "Loading..."}
         </h1>
