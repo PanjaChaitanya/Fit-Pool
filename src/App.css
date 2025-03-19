@@ -1,5 +1,7 @@
 /* Home css */
-
+p{
+    font-family: 'Poppins', sans-serif !important;
+}
 #fitPool{
     width: 40ch;
     text-wrap: nowrap;
@@ -14,11 +16,16 @@
 }
 
 /* Contact page css*/
-.contect-info-content-line img{
-    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(156deg) brightness(35%) contrast(100%);
+.contect-info-content-line{
+    img{
+        filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(156deg) brightness(35%) contrast(100%);
+    }
+    h6{
+        font-family: 'Poppins', sans-serif !important;
+    }
 }
 .contect-info-content-line:hover{
-    background-color: azure;
+    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(156deg) brightness(0%) contrast(100%); 
     cursor: pointer; 
 }
 

@@ -55,11 +55,15 @@ const Home = () => {
                 </motion.span>
               </h1>
               </div>
-              <p className="poppinFont">
+              <motion.p 
+              initial={{opacity: 0}}
+              animate={{opacity: 1}}
+              transition={{ duration: 1.5, ease: "easeInOut",delay:1 }}
+              className="poppinFont">
                 Transform your fitness journey with Fit Pool! Explore a wide range of exercises and expert workout guides. Whether you aim
                 to build strength, improve endurance, or stay active, we provide the right tools and motivation to keep you on track.
                 Let&apos;s get every muscle in shape!
-              </p>
+              </motion.p>
               <div className="flex justify-center">
                 <motion.button onClick={openLoginModal} className="px-6 py-2 text-white bg-gradient-to-r from-red-500 to-red-700 rounded-full shadow-lg animate-pulse flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform group btnFonts" initial={{ opacity: 0, y: 50 }} animate={isSection1InView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 1, ease: "easeIn", delay: 1.5 }}>
                   Get Started

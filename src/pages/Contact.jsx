@@ -7,13 +7,13 @@ const Contact = () => {
         {/* contact block */}
         <div className='flex-1 flex flex-col gap-10 align-middle justify-center max-h-screen overflow-y-auto red-scrollbar'>
             <div className='text-center'>
-                <h1 className='text-3xl font-bold'>Contact <span className='text-red-500'>Me</span></h1>
+                <h1 className='text-3xl font-bold montserratFont'>Contact <span className='text-red-500'>Me</span></h1>
                 <p className='text-lg'>Contact us for any questions or concerns.</p>
             </div>
             <div className='flex flex-wrap justify-center gap-x-10 align-middle'>
                 {/* contact form block */}
                 <div className='contact-form flex flex-col gap-5'>
-                    <div className='form-header text-center text-2xl font-bold'>
+                    <div className='form-header text-center text-2xl font-bold montserratFont'>
                         Message me
                     </div>
                     <form className='flex flex-col gap-5'>
@@ -29,7 +29,7 @@ const Contact = () => {
                 </div>
                 {/* contact info block */}
                 <div className="contact-info flex flex-col gap-10">
-                    <div className="contact-info-header text-center text-2xl font-bold">
+                    <div className="contact-info-header text-center text-2xl font-bold montserratFont">
                         Contact Info
                     </div>
                     <div className="contact-info-content flex flex-col gap-5">
