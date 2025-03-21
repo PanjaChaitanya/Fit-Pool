@@ -1,18 +1,26 @@
 import NavSideBar from '../components/NavSideBar'
 import { Button, TextField } from '@mui/material'
-
+import { motion } from 'framer-motion'
 const Contact = () => {
   return (
     <div className='flex'>
         {/* contact block */}
-        <div className='flex-1 flex flex-col gap-10 align-middle justify-center max-h-screen overflow-y-auto red-scrollbar'>
-            <div className='text-center'>
+        <div className='flex-1 flex flex-col gap-10 align-middle justify-center max-h-screen overflow-y-auto red-scrollbar no-scrollbar'>
+            <motion.div 
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className='text-center'>
                 <h1 className='text-3xl font-bold montserratFont'>Contact <span className='text-red-500'>Me</span></h1>
                 <p className='text-lg'>Contact us for any questions or concerns.</p>
-            </div>
+            </motion.div>
             <div className='flex flex-wrap justify-center gap-x-10 align-middle'>
                 {/* contact form block */}
-                <div className='contact-form flex flex-col gap-5'>
+                <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className='contact-form flex flex-col gap-5'>
                     <div className='form-header text-center text-2xl font-bold montserratFont'>
                         Message me
                     </div>
@@ -26,9 +34,13 @@ const Contact = () => {
                             Send Message
                         </Button>
                     </div>
-                </div>
+                </motion.div>
                 {/* contact info block */}
-                <div className="contact-info  flex flex-col gap-10">
+                <motion.div 
+                   initial={{ opacity: 0, y: 10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.6, delay: 0.4}}
+                    className="contact-info  flex flex-col gap-10">
                     <div className="contact-info-header text-center text-2xl font-bold montserratFont">
                         Contact Info
                     </div>
@@ -62,7 +74,7 @@ const Contact = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
         {/* nav side bar block */}

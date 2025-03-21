@@ -44,7 +44,7 @@ const About = () => {
         <div className="flex-1 flex flex-col justify-center text-left p-6 md:p-10">
             {/* Animated Heading */}
             <motion.h1
-            className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-wide"
+            className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-6 tracking-wide montserratFont"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -59,7 +59,7 @@ const About = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             >
-            Crafted with passion by <span className="font-semibold text-gray-900">
+            Crafted by <span className="font-semibold text-gray-900">
                 <span className="text-red-500">C</span>haitanya <span className="text-red-500">P</span>anja
             </span>, Fit Pool is a <span className="text-blue-500 font-semibold">React + Vite</span> fitness platform designed to enhance your workout experience.
             </motion.p>
