@@ -28,7 +28,7 @@ const Contact = () => {
                     </div>
                 </div>
                 {/* contact info block */}
-                <div className="contact-info flex flex-col gap-10">
+                <div className="contact-info  flex flex-col gap-10">
                     <div className="contact-info-header text-center text-2xl font-bold montserratFont">
                         Contact Info
                     </div>

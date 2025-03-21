@@ -25,7 +25,12 @@ p{
     }
 }
 .contect-info-content-line:hover{
-    filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(156deg) brightness(0%) contrast(100%); 
+    img{
+        filter : invert(96%) sepia(164%) saturate(10000%) hue-rotate(350deg) brightness(134%) contrast(165%);
+    }
+    h6{
+        color: red;
+    }
     cursor: pointer; 
 }
 
