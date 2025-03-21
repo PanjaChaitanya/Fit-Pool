@@ -36,32 +36,30 @@
 .sidebar {
   max-width: 250px;
   background-color: white;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0px 0px 5px black;
   transition: all 0.3s ease-in-out;
 }
 .sidebar:hover{
-  background-color: #fff3f3;
+  box-shadow: 0px 0px 15px black;
+}
+.sidebar >img{
+  padding: 20px;
 }
 /* Sidebar Avatar - Stays Circle */
 .sidebarAvatar {
   width: 180px;
+  align-self: center;
   height: auto;
   border-radius: 50%;
   margin-bottom: 10px;
-  transition: all ease-in-out 0.5s;
 }
-.sidebarAvatar:hover{
-  transform: scale(1.05);
-  box-shadow: 0 0 10px black;
-}
+
 /* Sidebar Brand */
 .sidebarBrand {
   font-size: 18px;
+  text-align: center;
   font-weight: bold;
   margin-bottom: 20px;
   font-family: 'Monomakh', sans-serif !important;
@@ -71,14 +69,23 @@
 .sidebarMenu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   /* height: 100vh; */ 
 }
 
 /* Menu Button Styling */
-.sidebarMenu button img {
-  width: 20px;
-  margin-right: 10px;
+.sidebarMenu div{
+  padding: 10px 0px;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.116);
+  img{
+    width: 20px;
+    margin-right: 10px;
+  }
+}
+.sidebarMenu div:hover{
+  background-color: #f7d1d188;
 }
 
 /* Bottom Section */

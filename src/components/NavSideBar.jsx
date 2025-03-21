@@ -1,6 +1,5 @@
 import { useState } from "react";
 import style from '../styles/NavSideBar.module.css';
-import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 
 
@@ -47,31 +46,31 @@ const NavSideBar = () => {
         
         {/* Menu */}
         <nav className={style.sidebarMenu}>
-          <Button variant="contained" color="error" className='btnFonts' onClick={goToHome}>
+          <div className='btnFonts' onClick={goToHome}>
             <img src="/icons/icon-home.svg" alt="Home" />
             <span>Home</span>
-          </Button>
-          <Button variant="contained" color="error" className='btnFonts' onClick={goToBMICalculator}>
-            <img src="/icons/bmicalculator-icon.png" alt="BMI Calculator" />
+          </div>
+          <div className='btnFonts' onClick={goToBMICalculator}>
+            <img src="/icons/bmical.png" alt="BMI Calculator" />
             <span>BMI Calculator</span>
-          </Button>
-          <Button variant="contained" color="error" className='btnFonts' onClick={goToExercises}>
-            <img src="/icons/bmicalculator-icon.png" alt="Exercises" />
+          </div>
+          <div className='btnFonts' onClick={goToExercises}>
+            <img src="/icons/gym.png" alt="Exercises" />
             <span>Exercises</span>
-          </Button>
+          </div>
         </nav>
 
         {/* Bottom Menu */}
     
           <nav className={`${style.sidebarMenu} ${style.bottom}`}>
-            <Button variant="contained" color="error" className='btnFonts' onClick={goToAbout}>
+            <div color="error" className='btnFonts' onClick={goToAbout}>
               <img src="/icons/icon-lock.svg" alt="about" />
               <span> About </span>
-            </Button>
-            <Button variant="contained" color="error" className='btnFonts' onClick={goToContact}>
+            </div>
+            <div className='btnFonts' onClick={goToContact}>
               <img src="/icons/icon-lock.svg" alt="about" />
               <span> Contact </span>
-            </Button>
+            </div>
           </nav>
         
       </aside>
