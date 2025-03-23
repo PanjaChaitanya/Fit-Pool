@@ -15,7 +15,6 @@
     width: 100vw;
     transition: all ease-in-out 0.5s;
 }
-
 .calculator {
     flex: 1 1 320px;
     padding: 2%;
