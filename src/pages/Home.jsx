@@ -1,16 +1,16 @@
-import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import { motion, useInView } from "framer-motion";
 import NavSideBar from '../components/NavSideBar';
 import "../App.css"
+import Signup from '../components/Signup';
 
 
 const Home = () => {
 
- 
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const goToSignup = () => navigate('/signup');
+  
+
   // Refs for scroll detection
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
@@ -63,7 +63,7 @@ const Home = () => {
                 Let&apos;s get every muscle in shape!
               </motion.p>
               <div className="flex justify-center">
-                <motion.button onClick={goToSignup}  className="px-6 py-2 text-white bg-gradient-to-r from-red-500 to-red-700 rounded-full shadow-lg animate-pulse flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform group btnFonts" initial={{ opacity: 0, y: 50 }} animate={isSection1InView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 1, ease: "easeIn", delay: 1.5 }}>
+                <motion.button onClick={() => setIsModalOpen(true)}  className="px-6 py-2 text-white bg-gradient-to-r from-red-500 to-red-700 rounded-full shadow-lg animate-pulse flex items-center gap-2 hover:scale-105 active:scale-95 transition-transform group btnFonts" initial={{ opacity: 0, y: 50 }} animate={isSection1InView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 1, ease: "easeIn", delay: 1.5 }}>
                   Get Started
                   <span className="transition-transform group-hover:-translate-y-2">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,6 +102,8 @@ const Home = () => {
           <NavSideBar />
         </div>
       </div>
+      {/* signup modal  */}
+      {isModalOpen && <Signup isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
     </>
   );
 }

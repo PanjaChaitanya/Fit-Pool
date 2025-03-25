@@ -26,6 +26,10 @@
 }
 
 /* Home css */
+button,Button{
+    cursor: pointer;
+}
+
 p{
     font-family: 'Poppins', sans-serif !important;
 }

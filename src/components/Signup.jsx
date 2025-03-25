@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { TextField } from '@mui/material';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utilities/firebase';
-const Signup = ( ) => {
-
+const Signup = ({isOpen, onClose}) => {
+  
   const [isActive, setIsActive] = useState(false);
 
   //states for user details
@@ -12,7 +12,9 @@ const Signup = ( ) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  
+ 
+  if (!isOpen) return null;
+
   let onSignUp = async (e) =>{
     //to prevent page reload
     e.preventDefault();
@@ -38,15 +40,18 @@ const Signup = ( ) => {
  
   return (
     <>
-    <div className={`flex items-center flex-wrap justify-center h-screen bg-gradient-to-r from-gray-200 to-blue-200`}>
-      <div className={`relative  bg-white rounded-3xl shadow-lg overflow-hidden w-[768px] min-h-[480px] ${isActive ? 'active' : ''}`}>
+      <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex items-center justify-center z-50">
+        <div className={`relative  bg-white rounded-3xl shadow-lg overflow-hidden w-[768px] min-h-[480px] ${isActive ? 'active' : ''}`}>
+        <button onClick={onClose} className="absolute z-50 top-3 right-3 text-gray-600 text-xl">
+          ✖
+        </button>
         {/* Sign Up Form */}
         <div className={`absolute top-0 left-0 w-1/2 h-full transition-all duration-500 ${isActive ? 'opacity-100 z-10 translate-x-full' : 'opacity-0 -z-10'}`}>
           <form onSubmit={onSignUp} className="flex flex-col items-center justify-center h-full px-10">
-            <h1 className="text-xl font-bold">Create Account</h1>
+            <h1 className="text-3xl montserratFont  font-bold">Create Account</h1>
             <div className="flex my-4 space-x-3">
             <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-red-500 hover:text-white transition">
-              <i className="fa-brands fa-google-plus-g text-red-500 text-lg"></i>
+              <i className="fa-brands fa-google text-red-500 text-lg"></i>
             </a>
             </div>
             <span className="text-xs">or use your email for registration</span>
@@ -90,45 +95,71 @@ const Signup = ( ) => {
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
             />
             {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
-            <button type='submit' className="px-6 py-2 mt-4 text-white bg-red-700 rounded-md">Sign Up</button>
+            <button type='submit' className="btnFonts px-6 py-2 mt-4 text-white bg-red-700 rounded-md">SIGN UP</button>
           </form>
         </div>
 
         {/* Sign In Form */}
         <div className={`absolute top-0 left-0 w-1/2 h-full transition-all duration-500 ${isActive ? '-translate-x-full opacity-0 -z-10' : 'opacity-100 z-10'}`}>
+        
           <form className="flex flex-col items-center justify-center h-full px-10">
-            <h1 className="text-xl font-bold">Sign In</h1>
+            <h1 className="text-xl font-bold">SIGN IN</h1>
             <div className="flex my-4 space-x-3">
               <a href="#" className="p-2 border rounded-full"><i className="fa-brands fa-google-plus-g"></i></a>
-              <a href="#" className="p-2 border rounded-full"><i className="fa-brands fa-facebook-f"></i></a>
-              <a href="#" className="p-2 border rounded-full"><i className="fa-brands fa-github"></i></a>
-              <a href="#" className="p-2 border rounded-full"><i className="fa-brands fa-linkedin-in"></i></a>
-            </div>
+             </div>
             <span className="text-xs">or use your email password</span>
-            <input type="email" placeholder="Email" className="w-full px-3 py-2 mt-2 bg-gray-200 rounded-md" />
-            <input type="password" placeholder="Password" className="w-full px-3 py-2 mt-2 bg-gray-200 rounded-md" />
+            <TextField
+              label="Email Address"
+              variant='standard'
+              type="email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+              required
+              placeholder="you@example.com"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+            <TextField
+              label='Password'
+              type="password"
+              variant='standard'
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
+              required
+              placeholder="Enter password"
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
             <a href="#" className="mt-2 text-xs text-gray-600">Forget Your Password?</a>
-            <button type='submit' className="px-6 py-2 mt-4 text-white bg-purple-700 rounded-md">Sign In</button>
+            <button type='submit' className="btnFonts px-6 py-2 mt-4 text-white bg-red-700 rounded-md">Sign In</button>
           </form>
         </div>
 
         {/* Toggle Panel */}
-        <div className={`absolute top-0 left-1/2 w-1/2 h-full transition-all duration-500 ${isActive ? '-translate-x-full' : ''}`}>
-          <div className="flex flex-col items-center justify-center h-full p-8 text-center text-white bg-red-700">
+        <div className={`absolute top-0 left-1/2 w-1/2 h-full rounded-br-4xl transition-all duration-500 ${isActive ? '-translate-x-full' : ''}`}>
+          <div className="flex flex-col gap-10 items-center justify-center h-full p-8 text-center text-white bg-red-700">
             <div className='app-logo-signup '>
               <img src="/images/fitpool.png" className='max-w-[150px] rounded-full  shadow-2xl border-2 border-red-400' alt="" />
             </div>
             {isActive ? (
               <>
-                <h1 className="text-2xl font-bold">Hello, Friend!</h1>
-                <p className="mt-2">Register with your personal details to use all of site features</p>
-                <button onClick={() => setIsActive(false)} className="px-6 py-2 mt-4 border border-white rounded-md">Sign In</button>
+              <div className=''>
+                <h1 className="text-2xl font-bold text-white">Hello, Friend!</h1>
+                <p className="mt-2">Register with your details to use all of site features →</p>
+              </div>
+              <div className=''>
+                <p className='text-white'> Already have an account?</p>
+                <button onClick={() => setIsActive(false)} className="btnFonts px-6 py-2 mt-4 border border-white rounded-md">SIGN IN</button>
+              </div>
               </>
             ) : (
               <>
-                <h1 className="text-2xl font-bold">Welcome Back!</h1>
-                <p className="mt-2">Enter your personal details to use all of site features</p>
-                <button onClick={() => setIsActive(true)} className="px-6 py-2 mt-4 border border-white rounded-md">Sign Up</button>
+              <div>
+                <h1 className="text-xl text-white montserratFont font-bold">Welcome Back!</h1>
+                <p className="mt-2">← Enter your details to use all of site features</p>
+              </div>
+              <div>
+                <p className="text-white">Don&apos;t have an account?</p>
+                <button onClick={() => setIsActive(true)} className="btnFonts px-6 py-2 mt-4 border border-white rounded-md">SIGN UP</button>
+              </div>
               </>
             )}
           </div>
