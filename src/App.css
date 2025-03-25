@@ -1,9 +1,17 @@
 /* Login css */
-.login-info-container.Login{
-    right: 0%;
-    text-align: right;
-    padding: 0 40px 60px;
+.signup-info::before{
+    content: '';
+    position: absolute;
+    top: 10%; 
+    left: 40%;
+    right: 0;
+    height: 65%; 
+    background: linear-gradient(90deg, #fb3854 0%, #901026 100%);
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: -2;
 }
+
 
 /* Home css */
 p{

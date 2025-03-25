@@ -7,7 +7,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { BodyPartProvider } from "./contexts/BodyPartContext";
 import { ExerciseProvider } from "./contexts/ExerciseContext";
-import Signup from "./components/Signup";
+import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 const App = () => {
   return (
@@ -16,7 +16,8 @@ const App = () => {
         <ExerciseProvider>
           <Router>
             <Routes>
-              <Route path="/" element={<Signin />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<Signup/>}/>
               <Route path="/bmicalculator" element={<BmiCalculator />} />
               <Route path="/searchexercises" element={<SearchExercises />} />
               <Route path="/exercise/:id" element={<ExerciseDetail />} />
