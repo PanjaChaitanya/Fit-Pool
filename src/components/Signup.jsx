@@ -1,33 +1,41 @@
 import { useState } from 'react';
 import { TextField } from '@mui/material';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../utilities/firebase';
 const Signup = ({isOpen, onClose}) => {
   
   const [isActive, setIsActive] = useState(false);
 
-  //states for user details
+  //states for user register (Sign Up) details
   const [userName, setUserName] = useState('') ;
-  const [email, setEmail] = useState('') ;
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [signUpEmail, setSignUpEmail] = useState('') ;
+  const [signUpPassword, setSignUpPassword] = useState('');
+  const [confirmSignUpPassword, setConfirmSignUpPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
- 
+
+  // states for user sign in details
+  const [signInEmail, setSignInEmail] = useState('')
+  const [signInPassword, setSignInPassword] = useState('')
+  const [signInError, SetSignInError] = useState('')
+
+  //navigation on successful login
+  const navigate = useNavigate()
+
+ //toggle the whole modal
   if (!isOpen) return null;
 
+  //function to create a user(Sign up)
   let onSignUp = async (e) =>{
     //to prevent page reload
     e.preventDefault();
-    if (!email || !userName || !password || !confirmPassword) {
-      setErrorMessage("All fields are required.");
-      return;
-    }
-    if (password !== confirmPassword) {
+   
+    if (signUpPassword !== confirmSignUpPassword) {
       setErrorMessage("Password not matched")
       return;
     }
     try{
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
       console.log("User added:", userCredential.user);
       setErrorMessage("Account created Click Sign In to continue");
     }catch(error){
@@ -36,6 +44,23 @@ const Signup = ({isOpen, onClose}) => {
     }
   }
 
+  let onSignIn = async (e) => {
+     //to prevent page reload
+     e.preventDefault();
+
+     try{
+      const userCredential = await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
+      console.log('logged in succsesfully :',userCredential.user)
+
+      //navigating to exercises page after successfull login
+      navigate('/searchexercises')
+      SetSignInError('')
+     }catch(error){
+      console.log( error.message)
+      SetSignInError(error.code)
+     }
+
+  }
  
  
   return (
@@ -68,8 +93,8 @@ const Signup = ({isOpen, onClose}) => {
               label="Email Address"
               variant='standard'
               type="email"
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              value={signUpEmail}
+              onChange={(e)=>setSignUpEmail(e.target.value)}
               required
               placeholder="you@example.com"
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -78,8 +103,8 @@ const Signup = ({isOpen, onClose}) => {
               label='Password'
               type="password"
               variant='standard'
-              value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              value={signUpPassword}
+              onChange={(e)=>setSignUpPassword(e.target.value)}
               required
               placeholder="Enter password"
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -88,8 +113,8 @@ const Signup = ({isOpen, onClose}) => {
               label='Confirm Password'
               type="password"
               variant='standard'
-              value={confirmPassword}
-              onChange={(e)=>setConfirmPassword(e.target.value)}
+              value={confirmSignUpPassword}
+              onChange={(e)=>setConfirmSignUpPassword(e.target.value)}
               required
               placeholder="Re-Enter password"
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -102,7 +127,7 @@ const Signup = ({isOpen, onClose}) => {
         {/* Sign In Form */}
         <div className={`absolute top-0 left-0 w-1/2 h-full transition-all duration-500 ${isActive ? '-translate-x-full opacity-0 -z-10' : 'opacity-100 z-10'}`}>
         
-          <form className="flex flex-col items-center justify-center h-full px-10">
+          <form onSubmit={onSignIn} className="flex flex-col items-center justify-center h-full px-10">
             <h1 className="text-xl font-bold">SIGN IN</h1>
             <div className="flex my-4 space-x-3">
               <a href="#" className="p-2 border rounded-full"><i className="fa-brands fa-google-plus-g"></i></a>
@@ -112,8 +137,8 @@ const Signup = ({isOpen, onClose}) => {
               label="Email Address"
               variant='standard'
               type="email"
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              value={signInEmail}
+              onChange={(e)=>setSignInEmail(e.target.value)}
               required
               placeholder="you@example.com"
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
@@ -122,13 +147,15 @@ const Signup = ({isOpen, onClose}) => {
               label='Password'
               type="password"
               variant='standard'
-              value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              value={signInPassword}
+              onChange={(e)=>setSignInPassword(e.target.value)}
               required
               placeholder="Enter password"
               className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
             />
             <a href="#" className="mt-2 text-xs text-gray-600">Forget Your Password?</a>
+
+            <p className="text-red-500 mt-2">{signInError}</p>
             <button type='submit' className="btnFonts px-6 py-2 mt-4 text-white bg-red-700 rounded-md">Sign In</button>
           </form>
         </div>
