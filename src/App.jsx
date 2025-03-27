@@ -10,6 +10,7 @@ import { ExerciseProvider } from "./contexts/ExerciseContext";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 const App = () => {
+  
   return (
     
       <BodyPartProvider>
@@ -19,14 +20,21 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/bmicalculator" element={<BmiCalculator />} />
               <Route path="/searchexercises" 
-              element={
-                <ProtectedRoute>
-                  <SearchExercises/>
-                </ProtectedRoute>
-              } />
-              <Route path="/exercise/:id" element={<ExerciseDetail />} />
+                element={
+                  <ProtectedRoute>
+                    <SearchExercises/>
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/exercise/:id"
+                element={
+                  <ProtectedRoute>
+                    <ExerciseDetail/>
+                  </ProtectedRoute>
+                } 
+             />
               <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/contact" element={<Contact />}/>
             </Routes>
           </Router>
         </ExerciseProvider>

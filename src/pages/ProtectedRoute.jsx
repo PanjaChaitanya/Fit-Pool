@@ -13,12 +13,16 @@ const ProtectedRoute = ({children}) => {
         setLoading(false)
       })
       return () => unsubscribe();
-    }, )
+    }, [])
     if(loading){
-      return <p>Loading.....</p>
+      return (
+        <div className='flex align-middle items-center min-h-screen'>
+          <p className='text-green-500 text-4xl text-center'>Checking user valid or not.....</p>
+        </div>
+      )
     }
 
-  return user ? children : <Navigate to='/'></Navigate>
+  return user ? children : <Navigate to='/' replace/>
 }
 
 export default ProtectedRoute
