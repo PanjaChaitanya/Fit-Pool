@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TextField } from '@mui/material';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../utilities/firebase';
 const Signup = ({isOpen, onClose}) => {
@@ -23,7 +23,17 @@ const Signup = ({isOpen, onClose}) => {
   const navigate = useNavigate()
 
  //toggle the whole modal
-  if (!isOpen) return null;
+  
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (!isOpen || user) return null; // Prevent rendering if user is logged in
 
   //function to create a user(Sign up)
   let onSignUp = async (e) =>{
@@ -66,7 +76,7 @@ const Signup = ({isOpen, onClose}) => {
   return (
     <>
       <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex items-center justify-center z-50">
-        <div className={`relative  bg-white rounded-3xl shadow-lg overflow-hidden w-[768px] min-h-[480px] ${isActive ? 'active' : ''}`}>
+        <div className={`relative  bg-white rounded-3xl shadow-lg overflow-hidden w-3xl min-h-[480px] ${isActive ? 'active' : ''}`}>
           <button onClick={onClose} className="absolute z-50 top-3 right-3 text-gray-600 text-xl">
             ✖
           </button>
@@ -75,8 +85,8 @@ const Signup = ({isOpen, onClose}) => {
             <form onSubmit={onSignUp} className="flex flex-col items-center justify-center h-full px-10">
               <h1 className="text-3xl montserratFont  font-bold">Create Account</h1>
               <div className="flex my-4 space-x-3">
-              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-red-500 hover:text-white transition">
-                <i className="fa-brands fa-google text-red-500 text-lg"></i>
+              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-blue-300 hover:text-white transition">
+                <img src="/icons/google.png" alt="" />
               </a>
               </div>
               <span className="text-xs">or use your email for registration</span>
@@ -129,7 +139,9 @@ const Signup = ({isOpen, onClose}) => {
             <form onSubmit={onSignIn} className="flex flex-col items-center justify-center h-full px-10">
               <h1 className="text-xl font-bold">SIGN IN</h1>
               <div className="flex my-4 space-x-3">
-                <a href="#" className="p-2 border rounded-full"><i className="fa-brands fa-google-plus-g"></i></a>
+              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-blue-300 hover:text-white transition">
+                <img src="/icons/google.png" alt="" />
+              </a>
               </div>
               <span className="text-xs">or use your email password</span>
               <TextField
@@ -161,7 +173,7 @@ const Signup = ({isOpen, onClose}) => {
 
           {/* Toggle Panel */}
           <div className={`absolute top-0 left-1/2 w-1/2 h-full rounded-br-4xl transition-all duration-500 ${isActive ? '-translate-x-full' : ''}`}>
-            <div className="flex flex-col gap-10 items-center justify-center h-full p-8 text-center text-white bg-red-700">
+            <div className="flex flex-col gap-5 items-center justify-center h-full p-5 text-center text-white bg-red-700">
               <div className='app-logo-signup '>
                 <img src="/images/fitpool.png" className='max-w-[150px] rounded-full  shadow-2xl border-2 border-red-400' alt="" />
               </div>
