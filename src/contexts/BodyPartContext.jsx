@@ -7,7 +7,6 @@ const BodyPartContext = createContext();
 export const BodyPartProvider = ({ children }) => {
   const [bodyPart, setBodyPart] = useState("all");
   const [exercises, setExercises] = useState([]);
-  console.log(bodyPart)
   return (
     <BodyPartContext.Provider value={{ bodyPart, setBodyPart, exercises, setExercises }}>
       {children}
