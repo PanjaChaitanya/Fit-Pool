@@ -16,8 +16,8 @@ const ProtectedRoute = ({children}) => {
     }, [])
     if(loading){
       return (
-        <div className='flex align-middle items-center min-h-screen'>
-          <p className='text-green-500 text-4xl text-center'>Checking user valid or not.....</p>
+        <div className='grid min-h-screen place-items-center bg-[var(--bg-main)]'>
+          <p className='text-sm text-[var(--text-muted)]'>Checking authentication...</p>
         </div>
       )
     }

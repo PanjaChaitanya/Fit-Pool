@@ -1,95 +1,96 @@
-import { Box, Stack, Typography, Pagination } from "@mui/material";
-import { useBodyPart } from "../contexts/BodyPartContext";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { exerciseOptions, fetchData } from "../utilities/fetchData";
+import { useBodyPart } from "../contexts/BodyPartContext";
+import Button from "./ui/Button";
 
 const Exercises = () => {
   const { bodyPart, exercises, setExercises } = useBodyPart();
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-  const exercisesPerPage = 6;
-  const indexOfLastExercise = currentPage * exercisesPerPage;
-  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
+  const exercisesPerPage = 8;
+  const pageCount = Math.max(1, Math.ceil(exercises.length / exercisesPerPage));
 
-  const Paginate = (e, value) => {
-    setCurrentPage(value);
-    window.scrollTo({ top: 500, behavior: "smooth" });
-  };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [bodyPart]);
 
   useEffect(() => {
     const fetchExercisesData = async () => {
-      let exercisesData = [];
-      if (bodyPart === "all") {
-        exercisesData = await fetchData(
-          "https://exercisedb.p.rapidapi.com/exercises?limit=100&offset=0",
-          exerciseOptions
-        );
-      } else {
-        exercisesData = await fetchData(
-          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
-          exerciseOptions
-        );
+      setLoading(true);
+      try {
+        const endpoint =
+          bodyPart === "all"
+            ? "https://exercisedb.p.rapidapi.com/exercises?limit=100&offset=0"
+            : `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
+
+        const exercisesData = await fetchData(endpoint, exerciseOptions);
+        setExercises(exercisesData);
+      } catch (error) {
+        console.error("Unable to fetch exercises:", error);
+      } finally {
+        setLoading(false);
       }
-      setExercises(exercisesData);
     };
 
     fetchExercisesData();
-  }, [bodyPart]);
+  }, [bodyPart, setExercises]);
+
+  const currentExercises = useMemo(() => {
+    const start = (currentPage - 1) * exercisesPerPage;
+    return exercises.slice(start, start + exercisesPerPage);
+  }, [currentPage, exercises]);
+
+  if (loading) {
+    return <p className="muted-line mt-6 text-sm">Loading exercises...</p>;
+  }
+
+  if (!currentExercises.length) {
+    return <p className="muted-line mt-6 text-sm">No exercises found for this filter.</p>;
+  }
 
   return (
-    <Box id="exercises" sx={{ mt: { lg: "80px" } }} mt="40px" p="20px">
-      <Typography 
-        variant="h4" 
-        component="h2" 
-        mb="46px" 
-        align="center" 
-        className="montserratFont uppercase transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:border-b-2  border-red-400 animateClass"
-      >
-        Showing exercises
-      </Typography>
-
-      <Stack direction="row" flexWrap="wrap" justifyContent="center" sx={{ gap: { lg: "70px", xs: "40px" } }}>
+    <div className="mt-6">
+      <div className="exercise-grid">
         {currentExercises.map((exercise) => (
-         <Link key={exercise.id} to={`/exercise/${exercise.id}`}>
-         <div className="p-5 w-[250px] h-auto shadow-2xl transition duration-300 rounded-xl ease-in-out hover:-translate-y-1 hover:scale-110 animateClass">
-           
-           {/* Ensure GIF URL is valid */}
-           <img
-             src={exercise?.gifUrl ? exercise.gifUrl : "/images/assets/small_Loader.gif"}
-             alt={exercise.name}
-             className="rounded-b-md w-full h-auto object-cover transition duration-300 ease-in-out"
-           />
-       
-           <div className="flex flex-wrap mt-2 align-middle justify-center gap-2">
-             <h5 className="mt-4 font-bold text-gray-700 capitalize hover:underline">
-               Name: {exercise.name}
-             </h5>
-             <div className="btnFonts text-center">Body Part: {exercise.bodyPart}</div>
-             <div className="btnFonts text-center">Targets On: {exercise.target}</div>
-           </div>
-         </div>
-       </Link>
-       
+          <Link key={exercise.id} to={`/exercise/${exercise.id}`} className="exercise-item">
+            <img
+              src={exercise.gifUrl || "/images/assets/small_Loader.gif"}
+              alt={exercise.name}
+              loading="lazy"
+            />
+            <div>
+              <p className="text-sm font-semibold capitalize">{exercise.name}</p>
+              <p className="exercise-meta mt-1 capitalize">{exercise.bodyPart}</p>
+              <p className="exercise-meta capitalize">Target: {exercise.target}</p>
+            </div>
+          </Link>
         ))}
-      </Stack>
+      </div>
 
-      <Stack mt="100px" alignItems="center">
-        {exercises.length > 4 && (
-          <Pagination
-            color="error"
-            className="btnFonts"
-            shape="rounded"
-            defaultPage={1}
-            count={Math.ceil(exercises.length / exercisesPerPage)}
-            page={currentPage}
-            onChange={Paginate}
-            size="large"
-          />
-        )}
-      </Stack>
-    </Box>
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+        <Button
+          variant="secondary"
+          size="sm"
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((value) => Math.max(1, value - 1))}
+        >
+          Previous
+        </Button>
+        <span className="text-sm text-[var(--text-muted)]">
+          Page {currentPage} of {pageCount}
+        </span>
+        <Button
+          variant="secondary"
+          size="sm"
+          disabled={currentPage === pageCount}
+          onClick={() => setCurrentPage((value) => Math.min(pageCount, value + 1))}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
   );
 };
 

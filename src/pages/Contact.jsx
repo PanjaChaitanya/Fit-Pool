@@ -1,176 +1,129 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
-import NavSideBar from "../components/NavSideBar";
-import { Button, TextField } from "@mui/material";
-import { motion } from "framer-motion";
+import AppShell from "../components/layout/AppShell";
+import Button from "../components/ui/Button";
+import { BodyText, SectionTitle } from "../components/system/Typography";
 
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState({ type: "", text: "" });
+  const [sending, setSending] = useState(false);
 
-  // Initialize EmailJS
-  emailjs.init("mZ7ToKGAYFVaRarfg"); // Replace with your actual Public Key
+  useEffect(() => {
+    emailjs.init("mZ7ToKGAYFVaRarfg");
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    // Validate input fields
     if (!name || !email || !subject || !message) {
-      alert("Please fill in all fields.");
+      setStatus({ type: "error", text: "Please complete all fields before sending." });
       return;
     }
 
-    // Send email using EmailJS
-    emailjs
-      .send("service_chaitanya", "template_chaitanya", {
-        name: name,
-        from_email: email,
-        subject: subject,
-        message: message,
-      })
-      .then((response) => {
-        alert("Email sent successfully!");
-        console.log("Success:", response.status, response.text);
+    setSending(true);
+    setStatus({ type: "", text: "" });
 
-        // Reset form fields after successful submission
-        setName("");
-        setEmail("");
-        setSubject("");
-        setMessage("");
-      })
-      .catch((error) => {
-        alert("Failed to send email. Please try again later.");
-        console.error("Error:", error);
+    try {
+      await emailjs.send("service_chaitanya", "template_chaitanya", {
+        name,
+        from_email: email,
+        subject,
+        message,
       });
+
+      setStatus({ type: "success", text: "Message sent. Thanks for reaching out." });
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch (error) {
+      setStatus({ type: "error", text: "Unable to send right now. Please try again later." });
+      console.error(error);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
-    <div className="flex">
-      {/* Contact Form Section */}
-      <div className="flex-1 flex flex-col gap-10 align-middle justify-center max-h-screen overflow-y-auto red-scrollbar no-scrollbar">
-        <motion.div
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center"
-        >
-          <h1 className="text-3xl font-bold montserratFont">
-            Contact <span className="text-red-500">Me</span>
-          </h1>
-          <p className="text-lg">Contact us for any questions or concerns.</p>
-        </motion.div>
+    <AppShell title="Contact" subtitle="Support channel">
+      <section className="grid gap-4 xl:grid-cols-[1fr_1.2fr]">
+        <article className="surface section-space">
+          <SectionTitle>Let&apos;s collaborate</SectionTitle>
+          <BodyText className="mt-3">
+            Use this form for product feedback, bugs, or feature requests. You can also reach out directly with the
+            details below.
+          </BodyText>
 
-        {/* Contact Form Block */}
-        <div className="flex flex-wrap justify-center gap-x-10 align-middle">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="contact-form flex flex-col gap-5"
-          >
-            <div className="form-header text-center text-2xl font-bold montserratFont">
-              Message me
+          <div className="mt-8 space-y-5">
+            <div>
+              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">Name</p>
+              <p className="mt-1 text-sm">Chaitanya Panja</p>
             </div>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <TextField
-                className="w-3xs"
-                label="Name"
-                type="text"
-                placeholder="Enter your name"
-                variant="standard"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <TextField
-                className="w-3xs"
-                label="Email"
-                type="email"
-                placeholder="Enter your email"
-                variant="standard"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <TextField
-                className="w-3xs"
-                label="Subject"
-                type="text"
-                placeholder="Enter subject"
-                variant="standard"
-                required
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-              />
-              <TextField
-                id="filled-textarea"
-                label="Message"
-                placeholder="Enter your message here"
-                multiline
-                variant="filled"
-                required
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              <div>
-                <Button type="submit" className="btnFonts" variant="outlined">
-                  Send Message
-                </Button>
-              </div>
-            </form>
-          </motion.div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">Location</p>
+              <p className="mt-1 text-sm">Bhimavaram, Andhra Pradesh</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">Phone</p>
+              <p className="mt-1 text-sm">+91 9059944125</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">Email</p>
+              <p className="mt-1 text-sm">panjachaitanya23@gmail.com</p>
+            </div>
+          </div>
+        </article>
 
-          {/* Contact Info Block */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="contact-info flex flex-col gap-10"
-          >
-            <div className="contact-info-header text-center text-2xl font-bold montserratFont">
-              Contact Info
-            </div>
-            <div className="contact-info-content flex flex-col gap-5">
-              <div className="contect-info-content-line flex gap-5">
-                <img src="/icons/icon-name.png" className="icon" alt="name-icon" />
-                <div className="contact-info-text">
-                  <h6>Name</h6>
-                  <p>Chaitanya Panja</p>
-                </div>
-              </div>
-              <div className="contect-info-content-line flex gap-5">
-                <img src="/icons/icon-location.png" className="icon" alt="location-icon" />
-                <div className="contact-info-text">
-                  <h6>Location</h6>
-                  <p>Andhra Pradesh State, Bhimavaram</p>
-                </div>
-              </div>
-              <div className="contect-info-content-line flex gap-5">
-                <img src="/icons/icon-phone.png" className="icon" alt="phone-icon" />
-                <div className="contact-info-text">
-                  <h6>Call</h6>
-                  <p>+91 9059944125</p>
-                </div>
-              </div>
-              <div className="contect-info-content-line flex gap-5">
-                <img src="/icons/icon-email.png" className="icon" alt="email-icon" />
-                <div className="contact-info-text">
-                  <h6>Email</h6>
-                  <p>panjachaitanya23@gmail.com</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
+        <article className="surface section-space">
+          <SectionTitle>Send a message</SectionTitle>
+          <form className="mt-6 grid gap-3" onSubmit={handleSubmit}>
+            <input
+              className="field"
+              type="text"
+              placeholder="Your name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
+            <input
+              className="field"
+              type="email"
+              placeholder="Your email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <input
+              className="field"
+              type="text"
+              placeholder="Subject"
+              value={subject}
+              onChange={(event) => setSubject(event.target.value)}
+            />
+            <textarea
+              className="textarea"
+              placeholder="Message"
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
+            />
 
-      {/* Sidebar */}
-      <div>
-        <NavSideBar />
-      </div>
-    </div>
+            {status.text && (
+              <p className={`text-sm ${status.type === "error" ? "text-red-500" : "text-[var(--success-500)]"}`}>
+                {status.text}
+              </p>
+            )}
+
+            <div className="pt-2">
+              <Button type="submit" size="lg" disabled={sending}>
+                {sending ? "Sending..." : "Send message"}
+              </Button>
+            </div>
+          </form>
+        </article>
+      </section>
+    </AppShell>
   );
 };
 

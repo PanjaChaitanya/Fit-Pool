@@ -1,109 +1,91 @@
 import { useEffect, useState } from "react";
-import { exerciseOptions, fetchData } from "../utilities/fetchData";
+import AppShell from "../components/layout/AppShell";
 import HorizontalScrollbar from "../components/HorizontalScrollbar";
-import Exercises from "../components/Exercises"; // Import Exercises component
+import Exercises from "../components/Exercises";
+import Button from "../components/ui/Button";
+import { exerciseOptions, fetchData } from "../utilities/fetchData";
 import { useBodyPart } from "../contexts/BodyPartContext";
-
-import NavSideBar from "../components/NavSideBar";
-
-import {motion} from 'framer-motion'
+import { BodyText, SectionTitle } from "../components/system/Typography";
 
 const SearchExercises = () => {
   const [search, setSearch] = useState("");
   const [bodyParts, setBodyParts] = useState([]);
-  const { bodyPart, exercises, setExercises } = useBodyPart();
+  const { setExercises } = useBodyPart();
 
   useEffect(() => {
-    const fetchExercisesData = async () => {
-      const bodyPartsData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
-        exerciseOptions
-      );
-      setBodyParts(["all", ...bodyPartsData]);
+    const fetchExerciseData = async () => {
+      try {
+        const bodyPartsData = await fetchData(
+          "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+          exerciseOptions,
+        );
+        setBodyParts(["all", ...bodyPartsData]);
+      } catch (error) {
+        console.error("Unable to fetch body parts:", error);
+      }
     };
-    fetchExercisesData();
+
+    fetchExerciseData();
   }, []);
 
-  const SearchExerciseData = async () => {
-    if (search) {
+  const searchExerciseData = async () => {
+    if (!search.trim()) {
+      return;
+    }
+
+    const normalized = search.trim().toLowerCase();
+
+    try {
       const exercisesData = await fetchData(
         "https://exercisedb.p.rapidapi.com/exercises?limit=500&offset=0",
-        exerciseOptions
+        exerciseOptions,
       );
 
-      const SearchedExercises = exercisesData.filter(
+      const filtered = exercisesData.filter(
         (exercise) =>
-          exercise.name.toLowerCase().includes(search) ||
-          exercise.bodyPart.toLowerCase().includes(search) ||
-          exercise.equipment.toLowerCase().includes(search) ||
-          exercise.target.toLowerCase().includes(search)
+          exercise.name.toLowerCase().includes(normalized) ||
+          exercise.bodyPart.toLowerCase().includes(normalized) ||
+          exercise.equipment.toLowerCase().includes(normalized) ||
+          exercise.target.toLowerCase().includes(normalized),
       );
 
+      setExercises(filtered);
       setSearch("");
-      setExercises(SearchedExercises);
+    } catch (error) {
+      console.error("Unable to search exercises:", error);
     }
   };
 
   return (
-    <div className="flex">
-      <div className="flex-1 max-h-screen overflow-y-auto p-2 red-scrollbar">
-        <div className="flex flex-col items-center justify-center w-full p-10">
-          <motion.h2 
-          initial={{ opacity: 0, y:-300}}
-          animate={{ opacity: 1, y:0}}
-          transition={{ duration: 1, ease:"easeInOut", delay: 0}}
-          className="text-center montserratFont">
-            Workouts to Keep You Fit
-          </motion.h2>
-          <motion.h3 
-          initial={{ opacity: 0}}
-          animate={{ opacity: 1}}
-          transition={{ duration: 1, ease:"easeInOut", delay: 0}}
-          className="text-center mt-5 montserratFont">
-            Pick - Perform - Progress </motion.h3>
+    <AppShell title="Exercise Library" subtitle="Find by body part or keyword">
+      <section className="surface section-space">
+        <SectionTitle>Search and filter workouts</SectionTitle>
+        <BodyText className="mt-2">
+          Use targeted filters for quick browsing, or run a keyword search by movement name, equipment, or muscle.
+        </BodyText>
 
-          {/* Search Bar */}
-          <div className="relative mb-[20px] mt-[50px] flex">
-            
-          <div className="flex items-center rounded-md pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-gray-600">
-            <input type="text" 
-              className="block min-w-4 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"  value={search}
-              onChange={(e) => setSearch(e.target.value.toLowerCase())}
-              placeholder="Search for More Exercises"
-            />
-            </div>
-            <img
-              src="/icons/search.png"
-              className="
-                h-[50px] w-[50px]
-                cursor-pointer
-                rounded-[25px]
-                active:bg-red-600
-                active:scale-75
-               focus:outline-2 focus:outline-offset-2 focus:outline-red-500
-               transition duration-300 ease-in-out hover:scale-110 hover:drop-shadow-sm"
-              onClick={SearchExerciseData}
-            />
-            
-          </div>
-
-          {/* Horizontal Scroll for Body Parts */}
-          <div className="relative w-full p-5">
-            <HorizontalScrollbar data={bodyParts} />
-          </div>
-
-          {/* Exercises List */}
-          <Exercises setExercises={setExercises} exercises={exercises} bodyPart={bodyPart} />
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <input
+            type="text"
+            className="field min-w-[240px] max-w-[460px] flex-1"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Search exercises"
+          />
+          <Button onClick={searchExerciseData}>Search</Button>
         </div>
-      </div>
 
-      {/* SideNavbar*/}
-      <div>
-        <NavSideBar />
-      </div>
-    </div>
+        <div className="mt-5">
+          <HorizontalScrollbar data={bodyParts} />
+        </div>
+      </section>
+
+      <section className="mt-4 surface section-space">
+        <SectionTitle>Results</SectionTitle>
+        <Exercises />
+      </section>
+    </AppShell>
   );
 };
 
 export default SearchExercises;
-
