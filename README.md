@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="screenshots/logo.png" alt="Fit Pool Logo" width="120" height="120"/>
+  <img src="public/images/fitpool.png" alt="Fit Pool Logo" width="120" height="120"/>
   <h1>🏊‍♀️ Fit Pool</h1>
   <p><i>Your personal fitness companion – Search, Track, and Transform.</i></p>
   
