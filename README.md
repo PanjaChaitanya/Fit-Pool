@@ -107,7 +107,7 @@ App should now be running on: [http://localhost:5173](http://localhost:5173)
 
 | Search Exercises                           | BMI Calculator                         | Stopwatch                               |
 | ------------------------------------------ | -------------------------------------- | --------------------------------------- |
-| ![Search](screenshots/exercise-search.png) | ![BMI](screenshots/bmi-calculator.png) | ![Stopwatch](screenshots/stopwatch.png) |
+| ![Search](Screenshots/searchpage.png) | ![BMI](Screenshots/BmicalPage.png) | ![Stopwatch](Screenshots/stopwatch.png) |
 
 > 💡 All screenshots are located in the `screenshots/` folder.
 
