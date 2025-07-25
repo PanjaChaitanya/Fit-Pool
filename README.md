@@ -1,8 +1,4 @@
-Here is your **beautiful, fully engaging, and professional `README.md` file** for the **Fit Pool** project – complete with badges, emojis, logo placeholder, deployment link, markdown design elements, and sections for screenshots. All ready to copy-paste directly into your repo!
 
----
-
-````md
 <div align="center">
   <img src="screenshots/logo.png" alt="Fit Pool Logo" width="120" height="120"/>
   <h1>🏊‍♀️ Fit Pool</h1>
