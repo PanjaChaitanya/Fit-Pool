@@ -7,7 +7,9 @@ const getSystemTheme = () => {
   if (typeof window === "undefined" || !window.matchMedia) {
     return "light";
   }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 };
 
 const getInitialTheme = () => {
@@ -15,7 +17,12 @@ const getInitialTheme = () => {
     return "light";
   }
 
-  const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+  let saved;
+  try {
+    saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+  } catch {
+    return "light";
+  }
   if (saved === "dark" || saved === "light") {
     return saved;
   }
@@ -28,11 +35,23 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", theme === "dark" ? "#141613" : "#fbfcf9");
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch {
+      /* Appearance still works without storage. */
+    }
   }, [theme]);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+    let saved;
+    try {
+      saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+    } catch {
+      return undefined;
+    }
     if (saved) {
       return undefined;
     }
@@ -50,14 +69,18 @@ export const ThemeProvider = ({ children }) => {
     () => ({
       theme,
       setTheme,
-      toggleTheme: () => setTheme((current) => (current === "dark" ? "light" : "dark")),
+      toggleTheme: () =>
+        setTheme((current) => (current === "dark" ? "light" : "dark")),
     }),
     [theme],
   );
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {

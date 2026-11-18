@@ -1,101 +1,132 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useExercises } from "../contexts/ExerciseDataContext";
+import { equipmentName, groupFor } from "../data/training";
+import { useFitness } from "../contexts/FitnessContext";
 import AppShell from "../components/layout/AppShell";
-import { ExerciseContext } from "../contexts/ExerciseContext";
-import { exerciseOptions, fetchData } from "../utilities/fetchData";
-import StopWatch from "../components/StopWatch";
-import Button from "../components/ui/Button";
-import { BodyText, SectionTitle } from "../components/system/Typography";
-
-const ExerciseDetail = () => {
+import Icon from "../components/ui/Icon";
+import ExerciseCard from "../components/ExerciseCard";
+import NotFound from "./NotFound";
+import ExerciseMedia from "../components/ExerciseMedia";
+import ExerciseStatus from "../components/ExerciseStatus";
+export default function ExerciseDetail() {
+  const { exercises, status: exerciseStatus } = useExercises();
   const { id } = useParams();
-  const { cachedExercises, setCachedExercises } = useContext(ExerciseContext);
-  const [exerciseDetail, setExerciseDetail] = useState(cachedExercises[id] || null);
-  const stopWatchRef = useRef(null);
-
-  useEffect(() => {
-    if (cachedExercises[id]) {
-      setExerciseDetail(cachedExercises[id]);
-      return;
-    }
-
-    const fetchExerciseDetail = async () => {
-      try {
-        const data = await fetchData(
-          `https://exercisedb.p.rapidapi.com/exercises/exercise/${id}`,
-          exerciseOptions,
-        );
-        setExerciseDetail(data);
-        setCachedExercises((prev) => ({ ...prev, [id]: data }));
-      } catch (error) {
-        console.error("Error fetching exercise details:", error);
-      }
-    };
-
-    fetchExerciseDetail();
-  }, [cachedExercises, id, setCachedExercises]);
-
+  const exercise = exercises.find((item) => item.id === id);
+  const { addExercise, toggleFavorite, favorites, workout } = useFitness();
+  if (!exercise && exerciseStatus !== "ready")
+    return (
+      <AppShell title="Animated movement guide">
+        <ExerciseStatus />
+      </AppShell>
+    );
+  if (!exercise) return <NotFound />;
+  const added = workout.exercises.some((item) => item.id === id);
+  const saved = favorites.includes(id);
   return (
     <AppShell
-      title={exerciseDetail?.name ? `${exerciseDetail.name}` : "Exercise details"}
-      subtitle="Movement breakdown"
+      title={exercise.name}
+      subtitle={[
+        equipmentName(exercise.equipment),
+        exercise.level,
+        exercise.category,
+      ]
+        .filter(Boolean)
+        .join(" · ")}
       headerActions={
-        <Button
-          variant="secondary"
-          onClick={() => stopWatchRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
-        >
-          Jump to timer
-        </Button>
+        <Link className="button secondary" to="/searchexercises">
+          <Icon name="arrowLeft" size={16} />
+          Back to library
+        </Link>
       }
     >
-      <section className="surface section-space grid gap-8 xl:grid-cols-[360px_minmax(0,1fr)]">
-        <img
-          src={exerciseDetail?.gifUrl || "/images/assets/loader.gif"}
-          alt={exerciseDetail?.name || "Loading exercise"}
-          className="aspect-square w-full max-w-[360px] rounded-2xl border border-[var(--line-color)] object-cover"
-        />
-
-        <div>
-          <SectionTitle className="capitalize">{exerciseDetail?.name || "Loading..."}</SectionTitle>
-          <BodyText className="mt-3">
-            Use the movement details below to stay precise with form and target the right muscle groups.
-          </BodyText>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-[var(--line-color)] bg-[var(--bg-soft)] p-3">
-              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">Target</p>
-              <p className="mt-1 text-sm capitalize">{exerciseDetail?.target || "Loading..."}</p>
+      <ExerciseStatus />
+      <div className="detail-grid">
+        <section className="panel movement-image">
+          <ExerciseMedia exercise={exercise} />
+          <p className="animation-caption">
+            <span className="muscle-mark" />
+            Red highlights show the target muscles.
+          </p>
+        </section>
+        <section className="panel movement-guide">
+          <div className="section-heading">
+            <h2>The movement</h2>
+            <button
+              className={`icon-button ${saved ? "is-saved" : ""}`}
+              onClick={() => toggleFavorite(id)}
+              aria-label={saved ? "Unsave exercise" : "Save exercise"}
+              aria-pressed={saved}
+            >
+              <Icon name="heart" />
+            </button>
+          </div>
+          <div className="movement-meta">
+            <div>
+              <span>Primary muscles</span>
+              <strong className="capitalize">
+                {exercise.primaryMuscles.join(", ")}
+              </strong>
             </div>
-            <div className="rounded-xl border border-[var(--line-color)] bg-[var(--bg-soft)] p-3">
-              <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">Equipment</p>
-              <p className="mt-1 text-sm capitalize">{exerciseDetail?.equipment || "Loading..."}</p>
+            <div>
+              <span>Equipment</span>
+              <strong className="capitalize">
+                {equipmentName(exercise.equipment)}
+              </strong>
+            </div>
+            <div>
+              <span>Movement type</span>
+              <strong className="capitalize">
+                {exercise.mechanic || exercise.category}
+              </strong>
             </div>
           </div>
-
-          <div className="mt-6 space-y-3">
-            <p className="text-sm font-semibold">Instructions</p>
-            {exerciseDetail?.instructions?.length ? (
-              <ol className="list-decimal space-y-2 pl-5 text-sm text-[var(--text-muted)]">
-                {exerciseDetail.instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
-              </ol>
-            ) : (
-              <p className="text-sm text-[var(--text-muted)]">Instruction data is not available for this exercise.</p>
-            )}
+          <h3>Make every rep count.</h3>
+          <ol className="instruction-list">
+            {exercise.instructions.map((instruction, index) => (
+              <li key={index}>{instruction}</li>
+            ))}
+          </ol>
+          <div className="button-row">
+            <button
+              className="button primary"
+              onClick={() => addExercise(id)}
+              disabled={added}
+            >
+              <Icon name={added ? "check" : "plus"} size={16} />
+              {added ? "In your workout" : "Add to workout"}
+            </button>
+            <a
+              className="button secondary"
+              href={`https://www.youtube.com/results?search_query=${encodeURIComponent(exercise.name + " proper form tutorial")}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Watch form guides <Icon name="external" size={15} />
+            </a>
           </div>
+          <p className="small-label">
+            Start with a comfortable load. Stop if a movement causes pain.
+          </p>
+        </section>
+      </div>
+      <section className="related-section">
+        <div className="section-heading">
+          <h2>Keep exploring</h2>
+          <span className="muted capitalize">
+            More for {groupFor(exercise)}
+          </span>
         </div>
-      </section>
-
-      <section ref={stopWatchRef} className="mt-4 surface section-space">
-        <SectionTitle>Workout timer</SectionTitle>
-        <BodyText className="mt-2">Set a duration for this movement and keep each set controlled.</BodyText>
-        <div className="mt-6">
-          <StopWatch />
+        <div className="exercise-grid related-grid">
+          {exercises
+            .filter(
+              (item) => item.id !== id && groupFor(item) === groupFor(exercise),
+            )
+            .slice(0, 3)
+            .map((item) => (
+              <ExerciseCard key={item.id} exercise={item} />
+            ))}
         </div>
       </section>
     </AppShell>
   );
-};
-
-export default ExerciseDetail;
+}

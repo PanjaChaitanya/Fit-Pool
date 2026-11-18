@@ -1,156 +1,142 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import AppShell from "../components/layout/AppShell";
-import Button from "../components/ui/Button";
-import { BodyText, SectionTitle } from "../components/system/Typography";
-
-const bmiRows = [
-  ["Severe thinness", "Less than 16"],
-  ["Moderate thinness", "16 - 17"],
-  ["Mild thinness", "17 - 18.5"],
-  ["Normal weight", "18.5 - 24.9"],
-  ["Overweight", "25 - 29.9"],
-  ["Obesity class I", "30 - 34.9"],
-  ["Obesity class II", "35 - 39.9"],
-  ["Obesity class III", "40+"],
-];
-
-const BmiCalculator = () => {
-  const [weight, setWeight] = useState(65);
-  const [feet, setFeet] = useState(5);
-  const [inch, setInch] = useState(7);
-  const [bmi, setBmi] = useState("");
-  const [message, setMessage] = useState("");
-
-  const heightInMeters = useMemo(() => ((feet * 12 + inch) * 0.0254).toFixed(2), [feet, inch]);
-
-  const calculateBmi = () => {
-    const meters = (feet * 12 + inch) * 0.0254;
-    const bmiValue = weight / (meters * meters);
-    setBmi(bmiValue.toFixed(2));
-
-    const minHealthyWeight = 18.5 * meters * meters;
-    const maxHealthyWeight = 24.9 * meters * meters;
-
-    if (bmiValue < 18.5) {
-      setMessage(`Underweight range. Add about ${(minHealthyWeight - weight).toFixed(1)} kg to enter the healthy zone.`);
+import Icon from "../components/ui/Icon";
+import { useLocalState } from "../utilities/storage";
+export default function BmiCalculator() {
+  const [metrics, setMetrics] = useLocalState("metrics", {
+    height: 170,
+    weight: 65,
+  });
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+  const calculate = (event) => {
+    event.preventDefault();
+    const height = Number(metrics.height);
+    const weight = Number(metrics.weight);
+    if (height < 100 || height > 250 || weight < 25 || weight > 400) {
+      setError("Enter a height from 100–250 cm and a weight from 25–400 kg.");
       return;
     }
-
-    if (bmiValue <= 24.9) {
-      setMessage("Healthy range. Keep your current routine steady.");
-      return;
-    }
-
-    setMessage(`Above healthy range. Reduce about ${(weight - maxHealthyWeight).toFixed(1)} kg to return to the healthy zone.`);
+    setError("");
+    setResult((weight / (height / 100) ** 2).toFixed(1));
   };
-
   return (
-    <AppShell title="BMI Calculator" subtitle="Health baseline">
-      <section className="grid gap-4 xl:grid-cols-[minmax(0,420px)_1fr]">
-        <article className="surface section-space">
-          <SectionTitle>Calculate your BMI</SectionTitle>
-          <BodyText className="mt-2">Adjust your current values and compute instantly.</BodyText>
-
-          <div className="mt-7 space-y-5">
-            <div>
-              <div className="mb-2 flex justify-between text-sm">
-                <span>Weight</span>
-                <span>{weight} kg</span>
-              </div>
-              <input
-                type="range"
-                min={30}
-                max={140}
-                step={1}
-                value={weight}
-                onChange={(event) => setWeight(Number(event.target.value))}
-                className="w-full accent-[var(--accent-500)]"
-              />
-            </div>
-
-            <div>
-              <div className="mb-2 flex justify-between text-sm">
-                <span>Height (feet)</span>
-                <span>{feet} ft</span>
-              </div>
-              <input
-                type="range"
-                min={3}
-                max={7}
-                step={1}
-                value={feet}
-                onChange={(event) => setFeet(Number(event.target.value))}
-                className="w-full accent-[var(--accent-500)]"
-              />
-            </div>
-
-            <div>
-              <div className="mb-2 flex justify-between text-sm">
-                <span>Height (inches)</span>
-                <span>{inch} in</span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={11}
-                step={1}
-                value={inch}
-                onChange={(event) => setInch(Number(event.target.value))}
-                className="w-full accent-[var(--accent-500)]"
-              />
-            </div>
+    <AppShell
+      title="A baseline. A bigger picture."
+      subtitle="One small measure to help you understand your starting point."
+    >
+      <div className="metrics-grid">
+        <section className="panel metrics-form">
+          <div className="section-heading">
+            <h2>Your body mass index</h2>
+            <Icon name="activity" />
           </div>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button onClick={calculateBmi}>Calculate</Button>
-            <Button variant="secondary" onClick={() => setBmi("")}>
-              Reset result
-            </Button>
+          <p className="muted">A simple ratio of your height and weight.</p>
+          <form onSubmit={calculate}>
+            <label>
+              Height
+              <span className="input-with-unit">
+                <input
+                  aria-label="Height in centimeters"
+                  type="number"
+                  min="100"
+                  max="250"
+                  step="0.1"
+                  value={metrics.height}
+                  onChange={(event) =>
+                    setMetrics((previous) => ({
+                      ...previous,
+                      height: event.target.value,
+                    }))
+                  }
+                  required
+                />
+                <span>cm</span>
+              </span>
+            </label>
+            <label>
+              Weight
+              <span className="input-with-unit">
+                <input
+                  aria-label="Weight in kilograms"
+                  type="number"
+                  min="25"
+                  max="400"
+                  step="0.1"
+                  value={metrics.weight}
+                  onChange={(event) =>
+                    setMetrics((previous) => ({
+                      ...previous,
+                      weight: event.target.value,
+                    }))
+                  }
+                  required
+                />
+                <span>kg</span>
+              </span>
+            </label>
+            {error && (
+              <p className="error-message" role="alert">
+                {error}
+              </p>
+            )}
+            <button className="button primary full-width">
+              Calculate BMI <Icon name="arrowRight" size={16} />
+            </button>
+          </form>
+          <p className="small-label">
+            <Icon name="shield" size={14} />
+            Your measurements stay in this browser.
+          </p>
+        </section>
+        <section className="panel metrics-result" aria-live="polite">
+          <span className="small-label">Your result</span>
+          <div className="bmi-number">
+            {result || "—"}
+            <small>kg/m²</small>
           </div>
-
-          <div className="mt-6 rounded-xl border border-[var(--line-color)] bg-[var(--bg-soft)] p-4">
-            <p className="text-xs uppercase tracking-[0.1em] text-[var(--text-muted)]">Your result</p>
-            <p className="mt-2 text-4xl font-bold tracking-[-0.03em]">{bmi || "--"}</p>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">{message || "BMI insight appears here after calculation."}</p>
-            <p className="mt-2 text-xs text-[var(--text-muted)]">Current height: {heightInMeters} m</p>
+          <h2>
+            {result
+              ? "One number, part of your story."
+              : "Start where you are."}
+          </h2>
+          <p>
+            {result
+              ? "BMI is a screening measure. It does not distinguish muscle from fat or describe your overall fitness."
+              : "Enter your measurements to calculate your BMI. Your progress is more than a single number."}
+          </p>
+          <div className="metrics-formula">
+            <span>How it’s calculated</span>
+            <strong>Weight (kg) ÷ height² (m)</strong>
           </div>
-        </article>
-
-        <article className="surface section-space">
-          <SectionTitle>BMI Reference</SectionTitle>
-          <BodyText className="mt-2">
-            BMI is a screening metric that combines height and weight. It does not directly measure body fat, but it
-            is a useful first checkpoint.
-          </BodyText>
-
-          <img
-            src="/images/bmireference.png"
-            alt="Body mass index reference chart"
-            className="mt-6 w-full rounded-2xl border border-[var(--line-color)] object-cover"
-          />
-
-          <div className="mt-6 overflow-x-auto">
-            <table className="w-full min-w-[420px] border-collapse text-left">
-              <thead>
-                <tr className="border-b border-[var(--line-color)] text-sm text-[var(--text-muted)]">
-                  <th className="pb-3 font-medium">Classification</th>
-                  <th className="pb-3 font-medium">BMI range (kg/m²)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {bmiRows.map(([label, range]) => (
-                  <tr key={label} className="border-b border-[var(--line-color)]">
-                    <td className="py-3 text-sm">{label}</td>
-                    <td className="py-3 text-sm text-[var(--text-muted)]">{range}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </article>
+        </section>
+      </div>
+      <section className="panel metrics-perspective">
+        <div>
+          <Icon name="info" size={23} />
+          <h2>Keep the whole picture in mind.</h2>
+        </div>
+        <div>
+          <p>
+            BMI is one screening tool for adults. Age, muscle mass, body
+            composition, and individual circumstances can change how useful it
+            is.
+          </p>
+          <p>
+            Use it alongside how you feel, your strength, your habits, and
+            advice from a qualified health professional. This calculator does
+            not set weight-loss or calorie targets.
+          </p>
+          <a
+            className="text-link"
+            href="https://www.cdc.gov/bmi/adult-calculator/index.html"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Learn about adult BMI <Icon name="external" size={14} />
+          </a>
+        </div>
       </section>
     </AppShell>
   );
-};
-
-export default BmiCalculator;
+}

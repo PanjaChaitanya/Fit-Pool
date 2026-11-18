@@ -11,6 +11,14 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.*
+!.env.example
+.taste-skill/
+artifacts/
+public/images/exercises/
+test-results/
+playwright-report/
 
 # Editor directories and files
 .vscode/*

@@ -1,0 +1,320 @@
+[
+  {
+    "bodyPart": "chest",
+    "equipment": "body weight",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0662",
+    "name": "push-up",
+    "target": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "deltoids",
+      "core"
+    ],
+    "instructions": [
+      "Start in a high plank position with your hands slightly wider than shoulder-width apart and your feet together.",
+      "Engage your core and lower your body towards the ground by bending your elbows, keeping your body in a straight line.",
+      "Pause for a moment when your chest is just above the ground, then push yourself back up to the starting position by straightening your arms.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The push-up is a classic bodyweight exercise that targets the pectoral muscles, triceps, deltoids, and core. It is performed by lowering and raising the body using the arms while maintaining a straight line from head to heels.",
+    "difficulty": "beginner",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0043",
+    "name": "barbell full squat",
+    "target": "glutes",
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves",
+      "core"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder-width apart, toes slightly turned out.",
+      "Hold the barbell across your upper back, resting it on your traps or rear delts.",
+      "Engage your core and keep your chest up as you begin to lower your body down.",
+      "Bend at the knees and hips, pushing your hips back and down as if sitting into a chair.",
+      "Lower yourself until your thighs are parallel to the ground or slightly below.",
+      "Keep your knees in line with your toes and your weight in your heels.",
+      "Drive through your heels to stand back up, extending your hips and knees.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The barbell full squat is a compound lower body exercise that targets the glutes and also works the quadriceps, hamstrings, calves, and core. It involves squatting down with a barbell placed across the upper back, requiring strength, balance, and proper technique.",
+    "difficulty": "intermediate",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "chest",
+    "equipment": "dumbbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0289",
+    "name": "dumbbell bench press",
+    "target": "pectorals",
+    "secondaryMuscles": [
+      "triceps",
+      "shoulders"
+    ],
+    "instructions": [
+      "Lie flat on a bench with your feet flat on the ground and your back pressed against the bench.",
+      "Hold a dumbbell in each hand, with your palms facing forward and your arms extended above your chest.",
+      "Lower the dumbbells slowly to the sides of your chest, keeping your elbows at a 90-degree angle.",
+      "Pause for a moment, then push the dumbbells back up to the starting position, fully extending your arms.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The dumbbell bench press is a classic upper body strength exercise that targets the pectoral muscles, with secondary emphasis on the triceps and shoulders. It is performed lying on a bench, pressing dumbbells from chest level to full arm extension.",
+    "difficulty": "beginner",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "upper legs",
+    "equipment": "barbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0032",
+    "name": "barbell deadlift",
+    "target": "glutes",
+    "secondaryMuscles": [
+      "hamstrings",
+      "lower back"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder-width apart and the barbell on the ground in front of you.",
+      "Bend your knees and hinge at the hips to lower your torso and grip the barbell with an overhand grip, hands slightly wider than shoulder-width apart.",
+      "Keep your back straight and chest lifted as you drive through your heels to lift the barbell off the ground, extending your hips and knees.",
+      "As you stand up straight, squeeze your glutes and keep your core engaged.",
+      "Lower the barbell back down to the ground by bending at the hips and knees, keeping your back straight.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The barbell deadlift is a compound strength exercise that targets the glutes, hamstrings, and lower back. It involves lifting a loaded barbell from the ground to a standing position, emphasizing proper form and core engagement.",
+    "difficulty": "intermediate",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "back",
+    "equipment": "barbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0027",
+    "name": "barbell bent over row",
+    "target": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder-width apart and knees slightly bent.",
+      "Bend forward at the hips while keeping your back straight and chest up.",
+      "Grasp the barbell with an overhand grip, hands slightly wider than shoulder-width apart.",
+      "Pull the barbell towards your lower chest by retracting your shoulder blades and squeezing your back muscles.",
+      "Pause for a moment at the top, then slowly lower the barbell back to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The barbell bent over row is a compound exercise targeting the upper back, requiring the lifter to hinge at the hips and pull a barbell towards the torso. It develops strength and muscle mass in the upper back, biceps, and forearms, and demands good posture and core stability.",
+    "difficulty": "intermediate",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "upper legs",
+    "equipment": "body weight",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "3533",
+    "name": "quads (bodyweight squat)",
+    "target": "quads",
+    "secondaryMuscles": [
+      "hamstrings",
+      "glutes"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder-width apart.",
+      "Lower your body by bending your knees and pushing your hips back as if sitting on a chair.",
+      "Keep your chest up and your back straight.",
+      "Lower yourself until your thighs are parallel to the ground.",
+      "Push through your heels to return to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "A bodyweight squat exercise primarily targeting the quadriceps, with secondary activation of the hamstrings and glutes. This movement is fundamental for lower body strength and can be performed without equipment.",
+    "difficulty": "beginner",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "waist",
+    "equipment": "body weight",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0274",
+    "name": "crunch floor",
+    "target": "abs",
+    "secondaryMuscles": [
+      "hip flexors"
+    ],
+    "instructions": [
+      "Lie flat on your back with your knees bent and feet flat on the ground.",
+      "Place your hands behind your head with your elbows pointing outwards.",
+      "Engage your abs and lift your shoulders off the ground, curling forward towards your knees.",
+      "Pause for a moment at the top, then slowly lower your shoulders back down to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The crunch floor is a classic abdominal exercise performed lying on your back, focusing on strengthening the abs with minimal equipment.",
+    "difficulty": "beginner",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "upper arms",
+    "equipment": "dumbbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0285",
+    "name": "dumbbell alternate biceps curl",
+    "target": "biceps",
+    "secondaryMuscles": [
+      "forearms"
+    ],
+    "instructions": [
+      "Stand up straight with a dumbbell in each hand, palms facing forward and arms fully extended.",
+      "Keeping your upper arms stationary, exhale and curl the weights while contracting your biceps.",
+      "Continue to raise the dumbbells until your biceps are fully contracted and the dumbbells are at shoulder level.",
+      "Hold the contracted position for a brief pause as you squeeze your biceps.",
+      "Inhale and slowly begin to lower the dumbbells back to the starting position.",
+      "Repeat for the desired number of repetitions, alternating arms."
+    ],
+    "description": "The dumbbell alternate biceps curl is a classic arm exercise that targets the biceps and also engages the forearms. It involves curling dumbbells alternately while keeping the upper arms stationary, focusing on controlled movement and muscle contraction.",
+    "difficulty": "beginner",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "waist",
+    "equipment": "body weight",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0464",
+    "name": "front plank with twist",
+    "target": "abs",
+    "secondaryMuscles": [
+      "obliques",
+      "shoulders"
+    ],
+    "instructions": [
+      "Start in a high plank position with your hands directly under your shoulders and your body in a straight line from head to toe.",
+      "Engage your core and glutes to maintain a stable position.",
+      "Rotate your torso to the right, lifting your right arm and extending it towards the ceiling.",
+      "Keep your hips and legs stable as you twist.",
+      "Hold for a moment, then return to the starting position.",
+      "Repeat the twist on the left side.",
+      "Continue alternating sides for the desired number of repetitions."
+    ],
+    "description": "The front plank with twist is a core exercise that targets the abs and obliques while also engaging the shoulders. It involves rotating the torso while maintaining a plank position, which challenges stability and coordination.",
+    "difficulty": "intermediate",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "back",
+    "equipment": "body weight",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0652",
+    "name": "pull-up",
+    "target": "lats",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Hang from a pull-up bar with your palms facing away from you and your arms fully extended.",
+      "Engage your core and squeeze your shoulder blades together.",
+      "Pull your body up towards the bar by bending your elbows and bringing your chest towards the bar.",
+      "Pause at the top of the movement, then slowly lower your body back down to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The pull-up is a bodyweight exercise that primarily targets the latissimus dorsi muscles of the back. It also engages the biceps and forearms as secondary muscles. The movement requires significant upper body strength, coordination, and control, making it a challenging exercise for many individuals.",
+    "difficulty": "advanced",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "shoulders",
+    "equipment": "dumbbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0334",
+    "name": "dumbbell lateral raise",
+    "target": "delts",
+    "secondaryMuscles": [
+      "traps"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder-width apart and hold a dumbbell in each hand, palms facing your body.",
+      "Keep your back straight and engage your core.",
+      "Raise your arms out to the sides until they are parallel to the floor, keeping a slight bend in your elbows.",
+      "Pause for a moment at the top, then slowly lower your arms back down to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The dumbbell lateral raise is an isolation exercise that targets the deltoid muscles, particularly the lateral (side) head. It is commonly used to build shoulder width and strength.",
+    "difficulty": "beginner",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "upper legs",
+    "equipment": "dumbbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0336",
+    "name": "dumbbell lunge",
+    "target": "glutes",
+    "secondaryMuscles": [
+      "quadriceps",
+      "hamstrings",
+      "calves"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder-width apart, holding a dumbbell in each hand.",
+      "Take a step forward with your right foot, lowering your body into a lunge position.",
+      "Keep your back straight and your chest up as you lower your body.",
+      "Push through your right heel to return to the starting position.",
+      "Repeat with your left leg.",
+      "Alternate legs for the desired number of repetitions."
+    ],
+    "description": "The dumbbell lunge is a lower body exercise that targets the glutes, quadriceps, hamstrings, and calves. It involves stepping forward into a lunge position while holding dumbbells, then returning to the starting position and alternating legs.",
+    "difficulty": "intermediate",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "back",
+    "equipment": "dumbbell",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0293",
+    "name": "dumbbell bent over row",
+    "target": "upper back",
+    "secondaryMuscles": [
+      "biceps",
+      "forearms"
+    ],
+    "instructions": [
+      "Stand with your feet shoulder-width apart, knees slightly bent, and hold a dumbbell in each hand with your palms facing your body.",
+      "Bend forward at the hips, keeping your back straight and your core engaged.",
+      "Let your arms hang straight down towards the floor, with your elbows slightly bent.",
+      "Pull the dumbbells up towards your chest, squeezing your shoulder blades together.",
+      "Pause for a moment at the top, then slowly lower the dumbbells back down to the starting position.",
+      "Repeat for the desired number of repetitions."
+    ],
+    "description": "The dumbbell bent over row is a compound exercise targeting the upper back, performed by hinging at the hips and pulling dumbbells towards the chest while maintaining a straight back.",
+    "difficulty": "intermediate",
+    "category": "strength"
+  },
+  {
+    "bodyPart": "waist",
+    "equipment": "body weight",
+    "gifUrl": "https://static.exercisedb.dev/media/01qpYSe.gif",
+    "id": "0006",
+    "name": "alternate heel touchers",
+    "target": "abs",
+    "secondaryMuscles": [
+      "obliques"
+    ],
+    "instructions": [
+      "Lie flat on your back with your knees bent and feet flat on the ground.",
+      "Extend your arms straight out to the sides, parallel to the ground.",
+      "Engaging your abs, lift your shoulders off the ground and reach your right hand towards your right heel.",
+      "Return to the starting position and repeat on the left side, reaching your left hand towards your left heel.",
+      "Continue alternating sides for the desired number of repetitions."
+    ],
+    "description": "Alternate heel touchers is a bodyweight exercise targeting the abdominal muscles, particularly the obliques. It involves lying on your back, lifting your shoulders, and reaching side to side to touch your heels, engaging your core throughout.",
+    "difficulty": "beginner",
+    "category": "strength"
+  }
+]
